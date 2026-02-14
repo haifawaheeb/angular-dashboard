@@ -2,26 +2,26 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
 
-## Development server
+# Project Name
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+وصف مختصر: هذا المشروع عبارة عن [نوع المشروع، مثال: لوحة تحكم تفاعلية] تم تطويره باستخدام Angular 16+، يهدف إلى [وصف الهدف أو المشكلة التي يحلها المشروع].
 
-## Code scaffolding
+## التقنيات المستخدمة
+- Angular 16+
+- RxJS, NgRx / Signals
+- TailwindCSS / SASS
+- Firebase (Auth, Firestore, Storage)
+- REST APIs
+- Charts & Data Visualizations (مثال: Chart.js / ngx-charts)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## المميزات
+- مكونات تفاعلية قابلة لإعادة الاستخدام
+- إدارة الحالة باستخدام NgRx أو Angular Signals
+- تكامل كامل مع REST APIs وFirebase
+- تصميم UI/UX دقيق من Figma
+- Lazy Loading وتحسين الأداء
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## طريقة التشغيل
+1. استنساخ المشروع:
+```bash
+git clone https://github.com/haifawaheeb/project-name.git
