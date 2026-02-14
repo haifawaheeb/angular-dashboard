@@ -1,0 +1,141 @@
+.fx-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.fx-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.fx-align-center {
+  align-items: center;
+  justify-content: center;
+}
+
+.fx-align-start-center {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.fx-flex {
+  flex: 1 1 100%;
+}
+
+.fx-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.admin-dashboard {
+  direction: rtl;
+  font-family: 'Cairo', sans-serif;
+  background-color: #f5f6fa;
+  min-height: 100vh;
+}
+
+.topbar {
+  background-color: #8e24aa;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  height: 60px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* أزرار القائمة */
+.dropbtn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 190px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  top: 60px;
+  right: 0;
+  z-index: 10;
+}
+
+.dropdown-content.show {
+  display: block;
+}
+
+.sub-dropdown {
+  position: relative;
+}
+
+.sub-dropdown a {
+  color: #333;
+  padding: 10px 15px;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.sub-dropdown a:hover {
+  background-color: #f3e5f5;
+}
+
+/* 🟢 هنا مكان ظهور القوائم الفرعية */
+.sub-dropdown-content {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 190px;        /* ← تأكدي أن القيمة كافية لتجعلها تظهر بجانب العنصر */
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  min-width: 120px;
+  z-index: 100;
+}
+
+.sub-dropdown-content.show {
+  display: block;
+}
+
+.sub-dropdown-content a {
+  display: block;
+  padding: 8px 14px;
+  color: #333;
+}
+
+.sub-dropdown-content a:hover {
+  background-color: #ede7f6;
+}
+
+.arrow {
+  float: left;
+  color: #999;
+}
+
+.content {
+  padding: 40px 60px;
+  text-align: right;
+}

@@ -1,0 +1,100 @@
+<!-- Header -->
+<header class="Header_style">
+  <!-- Top Bar -->
+  <div class="Header_style1">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-12">
+        <!-- User Info -->
+        <div class="flex items-center space-x-4 space-x-reverse">
+          <div class="user-avatar w-8 h-8 rounded-full flex items-center justify-center">
+            <span class="text-white text-sm font-bold">{{ userInitial }}</span>
+          </div>
+          <span class="text-white text-sm">{{ userName }}</span>
+        </div>
+
+        <!-- Logout Button -->
+        <button
+          class="logout-btn bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded-full text-sm font-medium transition-all duration-200"
+          (click)="handleLogout()">
+          <span class="flex items-center space-x-2 space-x-reverse">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            <span>تسجيل الخروج</span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo/Title -->
+      <div class="flex items-center">
+        <div class="bg-white bg-opacity-20 p-2 rounded-lg ml-3">
+          <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <!-- <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /> -->
+          </svg>
+        </div>
+        <h1 class="text-white text-2xl font-bold">{{ siteTitle }}</h1>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="desktop-nav hidden md:flex space-x-8 space-x-reverse">
+        <a routerLink="/dashboard" routerLinkActive="bg-white bg-opacity-20"
+          class="nav-item text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200">
+          الرئيسية
+        </a>
+        <a routerLink="/courses" routerLinkActive="bg-white bg-opacity-20"
+          class="nav-item text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200">
+          الكورسات
+        </a>
+        <a routerLink="/enrollments" routerLinkActive="bg-white bg-opacity-20"
+          class="nav-item text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200">
+          تسجيلاتي
+        </a>
+        <a routerLink="/grades" routerLinkActive="bg-white bg-opacity-20"
+          class="nav-item text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200">
+          الدرجات
+        </a>
+        <a routerLink="/certificates" routerLinkActive="bg-white bg-opacity-20"
+          class="nav-item text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200">
+          الشهادات
+        </a>
+        <a routerLink="/profile" routerLinkActive="bg-white bg-opacity-20"
+          class="nav-item text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200">
+          الملف الشخصي
+        </a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button class="mobile-menu-btn md:hidden text-white p-2" (click)="toggleMobileMenu()">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div
+  class="mobile-menu fixed top-0 right-0 h-full w-64 bg-gradient-to-b from-blue-600 to-purple-700 shadow-xl z-50 md:hidden transition-transform duration-300"
+  [class.translate-x-0]="isMobileMenuOpen" [class.translate-x-full]="!isMobileMenuOpen">
+  <div class="p-4">
+    <div class="flex justify-between items-center mb-8">
+      <h2 class="text-white text-lg font-bold">القائمة</h2>
+      <button class="text-white p-2" (click)="toggleMobileMenu()">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile Menu Overlay -->
+<div *ngIf="isMobileMenuOpen" class="mobile-overlay fixed inset-0 bg-black bg-opacity-50 z-40"
+  (click)="toggleMobileMenu()"></div>

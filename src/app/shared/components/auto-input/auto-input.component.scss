@@ -1,0 +1,38 @@
+::-webkit-input-placeholder {
+  opacity: 0.5;
+}
+
+/* في الاتجاه LTR إذا كان الحقل invalid */
+div[dir='ltr'] div input.ng-invalid.ng-touched {
+  border-right: 3px solid red;
+  border-left: 1px solid #c0e6c8;
+}
+
+/* زر البحث */
+.srchbtn {
+  display: inline-flex;
+  padding: 0 !important;
+  width: 14% !important;
+  text-align: center;
+  margin: 0;
+  height: 98% !important;
+  line-height: 25px;
+  border-radius: 0px;
+  font-size: 12px;
+  font-weight: bold;
+  vertical-align: middle;
+  cursor: pointer;
+  justify-content: center;
+}
+
+/* الأيقونة */
+.Icon {
+  font-size: 25px;
+}
+.row-center {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+}

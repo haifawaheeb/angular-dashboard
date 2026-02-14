@@ -1,0 +1,115 @@
+<div class="page-container">
+
+  <div class="top-bar">
+    <button class="btn-new" (click)="openDialog()">جديد</button>
+  </div>
+
+  <div class="filter-bar">
+    <input type="text" [(ngModel)]="search" (input)="applyFilter()" placeholder="بحث ...">
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <!-- <th>#</th> -->
+          <th>المادة</th>
+          <th>الصف</th>
+          <th>المعلم</th>
+          <th>السنة</th>
+          <th>الحالة</th>
+          <th>تعديل</th>
+          <th>حذف</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (c of filtered; track c.id) {
+        <tr>
+          <!-- <td>{{ c.id }}</td> -->
+          <td>{{ c.subject_name || '-' }}</td>
+          <td>{{ c.grade_name || '-' }}</td>
+          <td>{{ c.main_teacher_name || '-' }}</td>
+          <td>{{ c.academic_year }}</td>
+          <td>{{ c.is_active ? 'نشط' : 'غير نشط' }}</td>
+
+          <td>
+            <button (click)="edit(c)" class="icon-btn-table edit">✎</button>
+          </td>
+          <td>
+            <button (click)="delete(c.id)" class="icon-btn-table delete">🗑</button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+@if (isDialogOpen) {
+<div class="dialog-overlay" (click)="closeDialog()">
+  <div class="dialog-box" (click)="$event.stopPropagation()">
+
+    <div class="dialog-header">
+      <h3>{{ dialogTitle }}</h3>
+      <button (click)="closeDialog()">✖</button>
+    </div>
+
+    <form [formGroup]="form" class="dialog-body">
+
+      <div class="form-grid">
+
+        <div class="form-col">
+          <label>المادة</label>
+          <select formControlName="subject">
+            <option value="">-- اختر المادة --</option>
+            @for (s of subjects; track s.id) {
+              <option [value]="s.id">{{ s.name_ar }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="form-col">
+          <label>الصف</label>
+          <select formControlName="grade">
+            <option value="">-- اختر الصف --</option>
+            @for (g of grades; track g.id) {
+              <option [value]="g.id">{{ g.name_ar }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="form-col">
+          <label>المعلم</label>
+          <select formControlName="main_teacher">
+            <option value="">-- بدون معلم --</option>
+            @for (t of teachers; track t.id) {
+              <option [value]="t.id">{{ t.full_name }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="form-col">
+          <label>السنة الدراسية</label>
+          <input type="text" formControlName="academic_year" placeholder="2020-2021">
+        </div>
+
+        <div class="form-col">
+          <label>الحالة</label>
+          <select formControlName="is_active">
+            <option [value]="true">نشط</option>
+            <option [value]="false">غير نشط</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="footer-buttons">
+        <button type="button" (click)="save()"  class="btn-save">💾 حفظ</button>
+        <button type="button" (click)="closeDialog()" class="btn-exit">❌ خروج</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+}

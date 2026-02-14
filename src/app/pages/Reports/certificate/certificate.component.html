@@ -1,0 +1,114 @@
+<!-- certificate.component.html -->
+<div class="page">
+  <div class="toolbar no-print">
+    <button (click)="print()">🖨️ طباعة / حفظ PDF</button>
+    <button (click)="toggleEnglish()">
+      {{ lang === 'ar' ? 'English' : 'العربية' }}
+    </button>
+  </div>
+
+  <section class="certificate" [attr.dir]="lang === 'ar' ? 'rtl' : 'ltr'">
+    <!-- Decorative border -->
+    <div class="frame">
+      <div class="frame-inner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <!-- لو عندك شعار، بدّلي src -->
+        <div class="logo" aria-label="Dalil Logo">دليل</div>
+        <div class="brand-text">
+          <h3 class="org">{{ lang === 'ar' ? 'منصة دليل التعليمية' : 'Dalil Educational Platform' }}</h3>
+          <p class="tagline">
+            {{ lang === 'ar'
+              ? 'تعليم بلغة الإشارة — تعليم شامل للجميع'
+              : 'Sign Language Learning — Inclusive Education for All'
+            }}
+          </p>
+        </div>
+      </div>
+
+      <div class="badge">
+        <span class="badge-top">{{ lang === 'ar' ? 'شهادة' : 'Certificate' }}</span>
+        <span class="badge-main">{{ lang === 'ar' ? 'نجاح' : 'Achievement' }}</span>
+      </div>
+    </header>
+
+    <!-- Title -->
+    <div class="title-block">
+      <h1 class="title">{{ lang === 'ar' ? 'شهادة نجاح' : 'Certificate of Achievement' }}</h1>
+      <div class="subtitle">
+        {{ lang === 'ar'
+          ? 'تقديرًا للجهد والتميّز'
+          : 'In recognition of effort and excellence'
+        }}
+      </div>
+    </div>
+
+    <!-- Body -->
+    <main class="body">
+      <p class="line">
+        {{ lang === 'ar'
+          ? 'تمنح منصة دليل التعليمية هذه الشهادة للطالبة:'
+          : 'Dalil Educational Platform proudly presents this certificate to:'
+        }}
+      </p>
+
+      <div class="name-box">
+        <div class="name-label">{{ lang === 'ar' ? 'اسم الطالبة' : 'Student Name' }}</div>
+        <div class="student-name">{{ studentName }}</div>
+      </div>
+
+      <p class="line">
+        {{ lang === 'ar'
+          ? 'وذلك لحصولها على شهادة النجاح في مرحلة الروضة ضمن برامج التعليم بلغة الإشارة.'
+          : 'For successfully completing the Kindergarten level within the Sign Language learning program.'
+        }}
+      </p>
+
+      <p class="wish">
+        {{ lang === 'ar'
+          ? 'مع أطيب التمنيات بدوام التفوق والنجاح 🌸'
+          : 'Wishing continued success and excellence 🌸'
+        }}
+      </p>
+
+      <!-- Details -->
+      <div class="details">
+        <div class="detail">
+          <div class="label">{{ lang === 'ar' ? 'المرحلة' : 'Level' }}</div>
+          <div class="value">{{ level }}</div>
+        </div>
+        <div class="detail">
+          <div class="label">{{ lang === 'ar' ? 'التاريخ' : 'Date' }}</div>
+          <div class="value">{{ issueDate }}</div>
+        </div>
+        <div class="detail">
+          <div class="label">{{ lang === 'ar' ? 'رقم الشهادة' : 'Certificate No.' }}</div>
+          <div class="value">{{ certNumber }}</div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="sign">
+        <div class="sign-line"></div>
+        <div class="sign-label">{{ lang === 'ar' ? 'التوقيع' : 'Signature' }}</div>
+      </div>
+
+      <div class="seal" aria-label="Seal">
+        <div class="seal-inner">
+          <span>{{ lang === 'ar' ? 'معتمد' : 'Verified' }}</span>
+          <small>DALIL</small>
+        </div>
+      </div>
+
+      <div class="sign">
+        <div class="sign-line"></div>
+        <div class="sign-label">{{ lang === 'ar' ? 'الختم' : 'Stamp' }}</div>
+      </div>
+    </footer>
+  </section>
+</div>

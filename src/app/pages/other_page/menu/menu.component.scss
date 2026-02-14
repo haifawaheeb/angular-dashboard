@@ -1,0 +1,99 @@
+.menu-container {
+  display: flex;
+  justify-content: center;
+  background-color: #a8caeb;
+  padding: 8px;
+  gap: 5px;
+  direction: rtl;
+}
+
+.menu-button {
+  position: relative;
+}
+
+.menu-button > button {
+  background-color: #b5d5f0;
+  border: 1px dashed #6b93b8;
+  color: #000;
+  font-weight: 600;
+  padding: 6px 18px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 14px;
+}
+
+.menu-button > button:hover {
+  background-color: #92c2e6;
+}
+
+/* القائمة المنسدلة */
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #a5c9ec;
+  border: 1px dashed #4a7ba7;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  min-width: 220px;
+}
+
+.menu-button:hover .dropdown {
+  display: block;
+}
+
+/* عناصر القائمة */
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  position: relative;
+}
+
+.menu-link {
+  background-color: #a5c9ec;
+  border: none;
+  border-bottom: 1px dashed #7faed8;
+  color: #000;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 8px 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.menu-link:hover {
+  background-color: #8fc3ef;
+  color: #0f3c64;
+}
+
+/* الأيقونة */
+.menu-link mat-icon {
+  font-size: 18px;
+  margin-left: 8px;
+  color: #1a4e78;
+}
+
+/* القوائم الفرعية */
+.submenu {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 100%;
+  background-color: #a5c9ec;
+  border: 1px dashed #4a7ba7;
+  min-width: 220px;
+  z-index: 100;
+}
+
+.menu-item:hover > .submenu {
+  display: block;
+}

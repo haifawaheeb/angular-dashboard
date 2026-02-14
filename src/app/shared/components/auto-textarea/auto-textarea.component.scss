@@ -1,0 +1,86 @@
+/* الحاوية العامة */
+.dt-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+/* الليبل */
+.dt-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
+  padding-inline-end: 8px;
+}
+
+/* النجمة الحمراء للحقل المطلوب */
+.dt-required-star {
+  color: #e53935;
+  margin-inline-start: 4px;
+}
+
+/* حاوية التيكست إيريا */
+.dt-control-wrapper {
+  width: 100%;
+}
+
+/* Textarea الأساسية */
+.dt-textarea {
+  width: 100%;
+  min-height: 30px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #c0e6c8;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  resize: none; /* منع تغيير الحجم من المستخدم */
+}
+
+/* التركيز */
+.dt-textarea:focus {
+  border-color: #2196f3;
+  box-shadow: 0 0 0 1px rgba(33, 150, 243, 0.2);
+}
+
+/* الخطأ – اللون يتغير بناءً على الاتجاه في القواعد أدناه */
+.dt-textarea-error {
+  border-color: #e53935;
+}
+
+/* ترتيب الهنت/الخطأ والعداد */
+.dt-hint-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-size: 11px;
+}
+
+/* نص الهنت */
+.dt-hint {
+  color: #757575;
+}
+
+/* نص الخطأ */
+.dt-error {
+  color: #e53935;
+}
+
+/* العداد */
+.dt-counter {
+  color: #616161;
+  font-family: monospace;
+}
+
+/* قواعد خاصة بالاتجاهات للحدود عند الخطأ */
+div[dir='ltr'] .dt-textarea.ng-invalid.ng-touched {
+  border-right: 3px solid #e53935;
+  border-left: 1px solid #c0e6c8;
+}
+
+div[dir='rtl'] .dt-textarea.ng-invalid.ng-touched {
+  border-left: 3px solid #e53935;
+  border-right: 1px solid #c0e6c8;
+}

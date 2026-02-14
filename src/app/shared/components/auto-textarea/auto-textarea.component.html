@@ -1,0 +1,86 @@
+<div
+  class="dt-wrapper"
+  [dir]="dir"
+
+  ngModelGroup="value"
+>
+  <!-- Label -->
+  <label
+    *ngIf="label"
+    class="dt-label"
+    [style.font-size]="FontSize"
+    [style.font-family]="FontFamily"
+    [style.color]="LabelColor"
+
+  >
+    {{ label }}
+    <span *ngIf="required" class="dt-required-star">*</span>
+  </label>
+
+  <!-- Textarea container -->
+  <div
+    class="dt-control-wrapper"
+
+  >
+    <textarea
+      #textareaRef
+      [(ngModel)]="value"
+      (ngModelChange)="onInternalChange()"
+      (blur)="handleBlur()"
+      (focus)="onFocus($event)"
+      (input)="autoResize && resizeTextarea()"
+      [rows]="rows"
+      [name]="name"
+      [id]="id || name"
+      [attr.placeholder]="placeholder"
+      [required]="required"
+      [disabled]="disabled"
+      [attr.pattern]="pattern || null"
+      [attr.minlength]="minlength !== undefined ? minlength : null"
+      [attr.maxlength]="maxlength !== undefined ? maxlength : null"
+      [ngClass]="[
+        'dt-textarea',
+        classstyle || '',
+        hasError ? 'dt-textarea-error' : ''
+      ]"
+      [ngStyle]="{
+        'background-color': backColor,
+        'color': FontColor,
+        'font-size': FontSize,
+        'font-family': FontFamily,
+        ...(Stylepravte || {})
+      }"
+    ></textarea>
+
+    <!-- Hint + Errors + Counter -->
+    <div class="dt-hint-row">
+      <!-- Hint text -->
+      <div class="dt-hint" *ngIf="hint && !hasError">
+        {{ hint }}
+      </div>
+
+      <!-- Error messages -->
+      <div class="dt-error" *ngIf="showErrors && hasError">
+        <ng-container *ngIf="inputModel?.errors?.['required']">
+          هذا الحقل مطلوب.
+        </ng-container>
+        <ng-container *ngIf="inputModel?.errors?.['pattern']">
+          الرجاء إدخال النص بالصيغة الصحيحة.
+        </ng-container>
+        <ng-container *ngIf="inputModel?.errors?.['minlength']">
+          الحد الأدنى لعدد الأحرف هو
+          {{ inputModel?.errors?.['minlength']?.requiredLength }}.
+        </ng-container>
+        <ng-container *ngIf="inputModel?.errors?.['maxlength']">
+          الحد الأقصى لعدد الأحرف هو
+          {{ inputModel?.errors?.['maxlength']?.requiredLength }}.
+        </ng-container>
+      </div>
+
+      <!-- Counter -->
+      <div class="dt-counter" *ngIf="showCounter && maxlength">
+        {{ (value?.toString()?.length || 0) }} / {{ maxlength }}
+      </div>
+    </div>
+  </div>
+</div>

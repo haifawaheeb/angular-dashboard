@@ -1,0 +1,80 @@
+<div class="roles-page" dir="rtl">
+
+  <!-- Header -->
+  <div class="header-card">
+    <h1>صلاحيات منصة دليل</h1>
+    <p>إدارة صلاحيات المستخدمين لتعليم لغة الإشارة</p>
+  </div>
+
+  <!-- Main Card -->
+  <div class="content-card">
+    <form [formGroup]="form" class="space-y-8">
+
+      <!-- Personal Info -->
+      <section>
+        <h2 class="section-title">المعلومات الشخصية</h2>
+
+        <div class="grid">
+          <input formControlName="username" placeholder="اسم المستخدم">
+          <input formControlName="email" placeholder="البريد الإلكتروني">
+          <input formControlName="whatsapp" placeholder="رقم الواتس اب + مفتاح الدولة">
+          <input formControlName="group" placeholder="المجموعة">
+          <input type="password" formControlName="password" placeholder="كلمة السر">
+          <input type="password" formControlName="confirmPassword" placeholder="تأكيد كلمة السر">
+          <input formControlName="loginCoordinates" placeholder="إحداثيات تسجيل الدخول">
+          <input formControlName="address" placeholder="العنوان">
+
+          <select formControlName="grade" class="full">
+            <option value="">اختر الصف الدراسي</option>
+            <option value="kindergarten">الروضة</option>
+            <option value="grade1">الصف الأول</option>
+            <option value="grade2">الصف الثاني</option>
+            <option value="grade3">الصف الثالث</option>
+            <option value="grade4">الصف الرابع</option>
+            <option value="grade5">الصف الخامس</option>
+            <option value="grade6">الصف السادس</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Permissions -->
+      <section>
+        <h2 class="section-title">الصلاحيات</h2>
+
+        <div class="permissions-grid">
+          <label *ngFor="let p of permissionsList">
+            <input
+              type="radio"
+              [checked]="isChecked(p.value)"
+              (change)="togglePermission(p.value, $any($event.target).checked)">
+            <span>{{ p.label }}</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Special -->
+      <section class="special">
+        <label>
+          <input type="checkbox" formControlName="editAllPermissions">
+          تعديل الصلاحيات في النوافذ لكل المستخدمين
+        </label>
+      </section>
+
+      <!-- Buttons -->
+      <div class="actions">
+        <button type="button" (click)="save()">حفظ</button>
+        <button type="button" (click)="edit()">تعديل</button>
+        <button type="button" (click)="search()">بحث</button>
+        <button type="button" (click)="exit()">خروج</button>
+        <button type="button" (click)="resetDefaults()">الإعدادات الافتراضية</button>
+        <button type="button" (click)="fetchOther()">جلب الصلاحيات لمستخدم آخر</button>
+      </div>
+    </form>
+
+    <!-- Status -->
+    <div *ngIf="statusType" class="status" [class]="statusType">
+      {{ statusMessage }}
+    </div>
+  </div>
+</div>
+

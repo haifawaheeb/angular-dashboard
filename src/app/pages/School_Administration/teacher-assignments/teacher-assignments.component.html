@@ -1,0 +1,141 @@
+<div class="page-container">
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <button class="btn-new" (click)="openDialog()">
+      <span>إضافة إسناد معلم</span>
+    </button>
+  </div>
+
+  <!-- Search -->
+  <div class="filter-bar">
+    <input type="text" [(ngModel)]="search" (input)="applyFilter()" placeholder="بحث (المعلم / المادة / الصف) ..." />
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <!-- <th>#</th> -->
+          <th>المعلم</th>
+          <th>الصف</th>
+          <th>المادة</th>
+          <th>الحالة</th>
+          <!-- <th>تاريخ الإضافة</th> -->
+          <th>تعديل</th>
+          <th>حذف</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (a of filtered; track a.id) {
+        <tr>
+          <!-- <td>{{ a.id }}</td> -->
+<!--
+          <td>{{ a.teacher?.full_name || '-' }} </td>
+
+          <td> {{ a.grade?.name_ar || '-' }}</td>
+
+          <td> {{ a.subject?.name_ar || '-' }} </td>
+
+          <td> {{ a.is_active ? 'نشط' : 'غير نشط' }} </td>
+
+          <td> {{ a.created_at ? (a.created_at | date:'short') : '-' }} </td> -->
+          <td>{{ a.teacher_name || '-' }}</td>
+          <td>{{ a.grade_name || '-' }}</td>
+          <td>{{ a.subject_name || '-' }}</td>
+          <td>{{ a.is_active ? 'نشط' : 'غير نشط' }}</td>
+
+
+
+          <td><button class="icon-btn-table edit" (click)="edit(a)">✎</button></td>
+          <td> <button class="icon-btn-table delete" (click)="delete(a.id)">🗑</button> </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- Dialog -->
+@if (isDialogOpen) {
+<div class="dialog-overlay" (click)="closeDialog()">
+  <div class="dialog-box" (click)="$event.stopPropagation()">
+
+    <div class="dialog-header">
+      <button class="close-btn" (click)="closeDialog()">✖</button>
+      <h3>{{ dialogTitle }}</h3>
+    </div>
+
+    <form [formGroup]="form" class="dialog-body">
+
+      <div class="form-grid">
+
+        <div class="form-col">
+
+          <!-- Teacher -->
+          <label>المعلم</label>
+          <select formControlName="teacher">
+            <option value="" disabled selected>اختر المعلم</option>
+            @for (t of teachers; track t.id) {
+            <option [value]="t.id">
+              {{ t.full_name }}
+            </option>
+            }
+          </select>
+
+          <!-- Grade -->
+          <label>الصف</label>
+          <select formControlName="grade">
+            <option value="" disabled selected>اختر الصف</option>
+            @for (g of grades; track g.id) {
+            <option [value]="g.id">
+              {{ g.name_ar }}
+            </option>
+            }
+          </select>
+
+          <!-- Subject -->
+          <label>المادة</label>
+          <select formControlName="subject">
+            <option value="" disabled selected>اختر المادة</option>
+            @for (s of subjects; track s.id) {
+            <option [value]="s.id">
+              {{ s.name_ar }}
+            </option>
+            }
+          </select>
+
+        </div>
+
+        <div class="form-col">
+
+          <!-- Status -->
+          <label>الحالة</label>
+          <select formControlName="is_active">
+            <option [value]="true">نشط</option>
+            <option [value]="false">غير نشط</option>
+          </select>
+
+          <!-- Hint / Note -->
+          <div style="margin-top: 14px; font-size: 12px; opacity: .8;">
+            ⚠️ لا يمكن تكرار نفس (المعلم + الصف + المادة) لأن المودل عندك فيه
+            <b>unique_together</b>.
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="footer-buttons">
+        <button type="button" class="btn-save" (click)="save()">💾 حفظ</button>
+        <button type="button" class="btn-exit" (click)="closeDialog()">❌ خروج</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+}

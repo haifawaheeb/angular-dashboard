@@ -1,0 +1,58 @@
+<nav class="topbar" dir="rtl" appClickOutside (clickOutside)="closeAll()">
+  <ul class="root">
+    <li class="root-item"
+        *ngFor="let node of nodes(); trackBy: trackById"
+        [appHasPermission]="node.rolesAllowed">
+
+      <!-- مجموعة جذور -->
+      <ng-container *ngIf="isGroup(node)">
+        <button class="root-btn" type="button" (click)="toggle(node)">
+          <span class="icon" *ngIf="node.icon">{{ node.icon }}</span>
+          <span class="text">{{ node.label }}</span>
+          <span class="chev">▾</span>
+        </button>
+
+        <div class="dropdown" [class.open]="node.expanded">
+          <ul class="level-1">
+
+            <ng-container *ngFor="let child of node.children; trackBy: trackById">
+              <li *ngIf="isGroup(child); else childLeaf" class="group">
+                <button class="lvl-btn" type="button" (click)="toggle(child)">
+                  <span class="text">{{ child.label }}</span>
+                  <span class="chev">›</span>
+                </button>
+
+                <ul class="level-2" [class.open]="child.expanded">
+                  <ng-container *ngFor="let gc of child.children; trackBy: trackById">
+                    <ng-container *ngTemplateOutlet="leafTpl; context:{ $implicit: gc }"></ng-container>
+                  </ng-container>
+                </ul>
+              </li>
+
+              <ng-template #childLeaf>
+                <ng-container *ngTemplateOutlet="leafTpl; context:{ $implicit: child }"></ng-container>
+              </ng-template>
+            </ng-container>
+
+          </ul>
+        </div>
+      </ng-container>
+
+      <!-- عنصر جذري -->
+      <ng-container *ngIf="isItem(node)">
+        <a class="root-link" href="" (click)="onLeafClick($event, node)">
+          <span class="icon" *ngIf="node.icon">{{ node.icon }}</span>
+          <span class="text">{{ node.label }}</span>
+        </a>
+      </ng-container>
+
+    </li>
+  </ul>
+</nav>
+
+<!-- قالب الورقة (Item) -->
+<ng-template #leafTpl let-n>
+  <li *ngIf="isItem(n)" class="item">
+    <a href="" (click)="onLeafClick($event, n)">{{ n.label }}</a>
+  </li>
+</ng-template>

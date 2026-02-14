@@ -1,0 +1,89 @@
+<form #MYForm="ngForm">
+  <div class="headerCard fx-row fx-align-center" mat-dialog-draggable-title [dir]="root">
+    <h4>{{ 'settings' | translate }}</h4>
+    <span class="fx-flex"></span>
+    <button
+      class="close-dialog"
+      color="warn"
+      mat-button
+      type="button"
+      (click)="closedlg()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <mat-dialog-content class="mat-typography" [dir]="root">
+    <mat-card [dir]="root">
+      <div class="form-inline fx-row fx-align-start-center">
+        <div *ngIf="SelectedMenu" class="Cdiv fx-flex fx-row fx-align-start-center">
+          <label class="fx-30">{{ 'Label' | translate }}</label>
+          <input
+            name="SelectedMenu"
+            [(ngModel)]="SelectedMenu.name"
+            class="fx-70"
+          />
+        </div>
+      </div>
+
+      <div class="form-inline fx-row fx-align-start-center">
+        <!-- الأعمدة الظاهرة -->
+        <div class="indiv fx-column fx-50">
+          <h2 class="mrgn-b-md">{{ 'showcolumn' | translate }}</h2>
+          <div class="inner-block">
+        >
+            <!-- <div class="indiv fx-column dragable-bag" [dragula]='"dragable-bag"' [(dragulaModel)]="ShowCol"> -->
+            <div class="indiv fx-column">
+              <mat-list-item class="indiv" *ngFor="let x of ShowCol">
+                <div class="indiv chkSel" draggable="true">
+                  <mat-checkbox
+                    class="chkSel"
+                    (click)="removeItem(x, true)"
+                    (contextmenu)="seSelectedCol(x, $event)"
+                  >
+                    {{ x.name | translate }}
+                  </mat-checkbox>
+                </div>
+              </mat-list-item>
+            </div>
+          </div>
+        </div>
+
+        <!-- الأعمدة المخفية -->
+        <div class="indiv fx-column fx-50">
+          <h2 class="mrgn-b-md">{{ 'hiddencolumn' | translate }}</h2>
+          <div class="inner-block">
+
+            <!-- <div class="indiv fx-column dragable-bag" [dragula]='"dragable-bag"' [(dragulaModel)]="hideCol"> -->
+            <div class="indiv fx-column">
+              <mat-list-item class="indiv" *ngFor="let x of hideCol">
+                <div class="chkSel">
+                  <mat-checkbox
+                    class="chkSel"
+                    (click)="removeItem(x, false)"
+                    (contextmenu)="seSelectedCol(x, $event)"
+                  >
+                    {{ x.name | translate }}
+                  </mat-checkbox>
+                </div>
+              </mat-list-item>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+
+    <!-- الأزرار -->
+    <div class="fx-row fx-align-center fx-space-between">
+      <button mat-button color="accent" (click)="Submit()" cdkFocusInitial>
+        <mat-icon>save</mat-icon>{{ 'save' | translate }}
+      </button>
+      <button mat-button  color="accent" [hidden]="!showDefault" (click)="setDefault()">
+        <mat-icon>save</mat-icon>{{ 'def' | translate }}
+      </button>
+      <button mat-button  color="warn" (click)="closedlg()">
+        <mat-icon>cancel</mat-icon>{{ 'Exit' | translate }}
+      </button>
+    </div>
+  </mat-dialog-content>
+</form>

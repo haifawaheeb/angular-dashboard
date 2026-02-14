@@ -1,0 +1,116 @@
+<div class="page-container">
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <button class="btn-new" (click)="openDialog()">
+      <span>إضافة معلم</span>
+    </button>
+  </div>
+
+  <!-- Search -->
+  <div class="filter-bar">
+    <input
+      type="text"
+      [(ngModel)]="search"
+      (input)="applyFilter()"
+      placeholder="بحث عن معلم ..."
+    />
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <!-- <th>#</th> -->
+          <th>الاسم الكامل</th>
+          <th>البريد الإلكتروني</th>
+          <th>رقم الهاتف</th>
+          <th>الحالة</th>
+          <th>تاريخ الإضافة</th>
+          <th>تعديل</th>
+          <th>حذف</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (t of filtered; track t.id) {
+        <tr>
+          <!-- <td>{{ t.id }}</td> -->
+          <td>{{ t.full_name }}</td>
+          <td>{{ t.email }}</td>
+          <td>{{ t.phone || '-' }}</td>
+          <td>{{ t.is_active ? 'نشط' : 'غير نشط' }}</td>
+          <td>{{ t.created_at | date:'short' }}</td>
+
+          <td>
+            <button class="icon-btn-table edit" (click)="edit(t)">✎</button>
+          </td>
+
+          <td>
+            <button class="icon-btn-table delete" (click)="delete(t.id)">🗑</button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Dialog -->
+@if (isDialogOpen) {
+<div class="dialog-overlay" (click)="closeDialog()">
+  <div class="dialog-box" (click)="$event.stopPropagation()">
+
+    <div class="dialog-header">
+      <button class="close-btn" (click)="closeDialog()">✖</button>
+      <h3>{{ dialogTitle }}</h3>
+    </div>
+
+    <form [formGroup]="form" class="dialog-body">
+
+      <div class="form-grid">
+
+        <div class="form-col">
+          <label>الاسم الكامل</label>
+          <input
+            type="text"
+            formControlName="full_name"
+            placeholder="اسم المعلم"
+          />
+
+          <label>البريد الإلكتروني</label>
+          <input
+            type="email"
+            formControlName="email"
+            placeholder="example@email.com"
+          />
+
+          <label>رقم الهاتف</label>
+          <input
+            type="text"
+            formControlName="phone"
+            placeholder="05xxxxxxxx"
+          />
+        </div>
+
+        <div class="form-col">
+          <label>الحالة</label>
+          <select formControlName="is_active">
+            <option [value]="true">نشط</option>
+            <option [value]="false">غير نشط</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="footer-buttons">
+        <button type="button" class="btn-save" (click)="save()">💾 حفظ</button>
+        <button type="button" class="btn-exit" (click)="closeDialog()">❌ خروج</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+}
+

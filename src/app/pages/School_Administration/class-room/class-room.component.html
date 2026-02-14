@@ -1,0 +1,42 @@
+<div class="class-room-container">
+  <div class="father_class">
+    <div class="rtl-tree-container">
+      <cdk-tree [dataSource]="dataSource" [treeControl]="treeControl">
+        <cdk-tree-node *cdkTreeNodeDef="let node" cdkTreeNodePadding class="example-tree-node"
+          [style.display]="shouldRender(node) ? 'flex' : 'none'">
+          <button mat-icon-button disabled></button>
+          <span class="node-text">{{ node.name }}</span>
+        </cdk-tree-node>
+        <cdk-tree-node *cdkTreeNodeDef="let node; when: hasChild" cdkTreeNodePadding class="example-tree-node"
+          [style.display]="shouldRender(node) ? 'flex' : 'none'">
+          <button mat-icon-button cdkTreeNodeToggle [attr.aria-label]="'تبديل ' + node.name" د
+            (click)="node.isExpanded = !node.isExpanded" [style.visibility]="node.expandable ? 'visible' : 'hidden'">
+            <mat-icon class="rtl-icon">
+              {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_left' }}
+            </mat-icon>
+          </button>
+          <span class="node-text">{{ node.name }}</span>
+        </cdk-tree-node>
+      </cdk-tree>
+    </div>
+  </div>
+  <div class="Text_note_viedo"  style="height: 100%; text-align: center;">
+    <div class="Text_note" >
+      <div class="video-frame"  >
+        <div class="video-title">
+          <p> عنوان الفيديو</p>
+          <p  style="height: 100%; text-align: center; color: rgb(74, 4, 224); font-size: x-large;">يتم عرض المادة التدريبية هنا </p>
+        </div>
+      </div>
+      <br/>
+      <div class="button_group">
+          <button class="btn-primary"> التالي</button>
+          <button class="btn-secondary">احفظ الملاحظات</button>
+        </div>
+    </div>
+    <div class="Text_note" style="height: 100%; text-align: center;">
+      <p>يتم هنا كتابة النص المترجم للغة الاشارة </p>
+    </div>
+  </div>
+</div>
+

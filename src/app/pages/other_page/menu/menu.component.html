@@ -1,0 +1,27 @@
+<div class="menu-container">
+  <ng-container *ngFor="let item of menu">
+    <div class="menu-button">
+      <button mat-button>
+        <mat-icon>{{ item.icon }}</mat-icon> {{ item.title }}
+      </button>
+
+      <div class="dropdown" *ngIf="item.children.length">
+        <ng-container *ngTemplateOutlet="recursiveMenu; context: { $implicit: item.children }"></ng-container>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #recursiveMenu let-children>
+    <ul class="menu-list">
+      <li *ngFor="let child of children" class="menu-item">
+        <button class="menu-link" [routerLink]="child.route">
+          <mat-icon>{{ child.icon }}</mat-icon> {{ child.title }}
+        </button>
+
+        <div class="submenu" *ngIf="child.children.length">
+          <ng-container *ngTemplateOutlet="recursiveMenu; context: { $implicit: child.children }"></ng-container>
+        </div>
+      </li>
+    </ul>
+  </ng-template>
+</div>

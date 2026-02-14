@@ -1,0 +1,107 @@
+<div class="subscription-container">
+
+  <!-- Header -->
+  <header class="header fade-in">
+    <div class="icon-wrapper float-animation">
+      <svg width="80" height="80" viewBox="0 0 80 80">
+        <circle cx="40" cy="40" r="38" class="circle-bg"/>
+        <path d="M25 35 L25 45 M40 30 L40 50 M55 35 L55 45" class="stroke-main"/>
+        <path d="M30 25 Q40 20 50 25" class="stroke-secondary"/>
+        <circle cx="25" cy="40" r="3" class="circle-main"/>
+        <circle cx="40" cy="40" r="3" class="circle-main"/>
+        <circle cx="55" cy="40" r="3" class="circle-main"/>
+      </svg>
+    </div>
+
+    <h1>{{ mainTitle }}</h1>
+    <p class="subtitle">{{ subtitle }}</p>
+  </header>
+
+  <!-- Packages -->
+  <div class="packages-grid">
+
+    <!-- Package 1 -->
+    <div class="package-card fade-in p1">
+      <div class="package-icon">
+        🎨
+      </div>
+
+      <h2>{{ package1Title }}</h2>
+      <p>{{ package1Description }}</p>
+
+      <div class="price">$20 <span>للعام الدراسي</span></div>
+
+      <ul class="features">
+        <li>✓ دروس تفاعلية مبسطة</li>
+        <li>✓ ألعاب تعليمية ممتعة</li>
+        <li>✓ شهادة إتمام</li>
+        <li>✓ دعم فني مستمر</li>
+      </ul>
+
+      <button class="btn-primary" (click)="subscribe('kindergarten',20)">
+        {{ buttonText }}
+      </button>
+    </div>
+
+    <!-- Package 2 -->
+    <div class="package-card fade-in p2">
+      <div class="badge">⭐ الأكثر شعبية</div>
+
+      <div class="package-icon">
+        📚
+      </div>
+
+      <h2>{{ package2Title }}</h2>
+      <p>{{ package2Description }}</p>
+
+      <div class="price">$50 <span>للعام الدراسي</span></div>
+
+      <ul class="features">
+        <li>✓ جميع مميزات الروضة</li>
+        <li>✓ دروس متقدمة ومنظمة</li>
+        <li>✓ اختبارات تفاعلية</li>
+        <li>✓ تقارير تقدم مفصلة</li>
+        <li>✓ محتوى إضافي حصري</li>
+      </ul>
+
+      <button class="btn-secondary" (click)="subscribe('primary',50)">
+        {{ buttonText }}
+      </button>
+    </div>
+
+    <!-- Package 3 -->
+    <div class="package-card fade-in p3">
+      <div class="package-icon">
+        🎓
+      </div>
+
+      <h2>{{ package3Title }}</h2>
+      <p>{{ package3Description }}</p>
+
+      <div class="price">$75 <span>للعام الدراسي</span></div>
+
+      <ul class="features">
+        <li>✓ جميع مميزات الابتدائي</li>
+        <li>✓ محتوى احترافي متقدم</li>
+        <li>✓ جلسات تدريب مباشرة</li>
+        <li>✓ شهادة معتمدة</li>
+        <li>✓ أولوية الدعم الفني</li>
+      </ul>
+
+      <button class="btn-primary" (click)="subscribe('advanced',75)">
+        {{ buttonText }}
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Popup -->
+<div *ngIf="popup.show" class="popup">
+  <div class="popup-box">
+    <div class="icon">✅</div>
+    <h3>شكراً لاختيارك!</h3>
+    <p>لقد اخترت {{ popup.title }} بسعر ${{ popup.price }}</p>
+    <button class="btn-close" (click)="closePopup()">حسناً</button>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="dialog-container" [style.width]="width" [style.height]="height">
+
+  <!-- Header -->
+  <div class="dialog-header" [dir]="'rtl'">
+    <span class="dialog-title">{{ title }}</span>
+
+    <button *ngIf="showClose"
+      class="close-btn"
+      mat-icon-button
+      (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Content (Dynamic) -->
+  <div class="dialog-content">
+    <ng-content select="[dialogContent]"></ng-content>
+  </div>
+
+  <!-- Actions -->
+  <div class="dialog-actions" [dir]="'rtl'">
+    <ng-content select="[dialogActions]"></ng-content>
+  </div>
+
+</div>

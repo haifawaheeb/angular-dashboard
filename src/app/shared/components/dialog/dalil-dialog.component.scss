@@ -1,0 +1,48 @@
+.dialog-container {
+  background: linear-gradient(#e4f7ff, #bdeaff);
+  border: 2px solid #9cd4f5;
+  border-radius: 6px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Header */
+.dialog-header {
+  background: #0077b6;
+  color: white;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dialog-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Close Button */
+.close-btn {
+  background: #d62828;
+  color: white;
+  border-radius: 3px;
+  margin-left: 10px;
+}
+
+/* Content */
+.dialog-content {
+  background: white;
+  padding: 15px;
+  min-height: 80px;
+}
+
+/* Actions */
+.dialog-actions {
+  padding: 12px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  background: #f8f9fa;
+  border-top: 1px solid #e0e0e0;
+}

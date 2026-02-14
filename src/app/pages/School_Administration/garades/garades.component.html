@@ -1,0 +1,99 @@
+<div class="page-container">
+
+  <div class="top-bar">
+    <button class="btn-new" (click)="openDialog()">
+      <svg width="16" height="16" ...>...</svg>
+      <span>جديد</span>
+    </button>
+  </div>
+
+  <div class="filter-bar">
+    <input type="text" [(ngModel)]="search" (input)="applyFilter()" placeholder="بحث ...">
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <!-- <th>#</th> -->
+          <th>المرحلة</th>
+          <th>الصف </th>
+          <th>رقم الترم</th>
+          <th>الترتيب</th>
+          <th>تعديل</th>
+          <th>حذف</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (g of filtered; track g.id) {
+        <tr>
+          <!-- <td>{{ g.id }}</td> -->
+          <td>{{ g.stage?.name_ar || '—' }}</td>
+          <td>{{ g.name_ar }}</td>
+          <td>{{ g.name_en }}</td>
+          <td>{{ g.level_order }}</td>
+
+          <td>
+            <button class="icon-btn-table edit" (click)="edit(g)">✎</button>
+          </td>
+
+          <td>
+            <button class="icon-btn-table delete" (click)="delete(g.id)">🗑</button>
+          </td>
+        </tr>
+        }
+      </tbody>
+
+    </table>
+  </div>
+</div>
+
+
+@if (isDialogOpen) {
+<div class="dialog-overlay" (click)="closeDialog()">
+  <div class="dialog-box" (click)="$event.stopPropagation()">
+
+    <div class="dialog-header">
+      <button class="close-btn" (click)="closeDialog()">✖</button>
+      <h3>{{ dialogTitle }}</h3>
+    </div>
+
+    <form [formGroup]="form" class="dialog-body">
+
+      <label>المرحلة التعليمية</label>
+
+      <select formControlName="stage_id">
+        <option value="" disabled>اختر المرحلة</option>
+
+        @for (stage of stages; track stage.id) {
+        <option [value]="stage.id">
+          {{ stage.name_ar }}
+        </option>
+        }
+      </select>
+
+
+      <label>الاسم عربي</label>
+      <input formControlName="name_ar">
+
+      <label>الترم الدراسي</label>
+
+      <select formControlName="name_en">
+        <option value="term1" label="الترم الاول "></option>
+        <option value="term2" label="الترم الثاني "></option>
+      </select>
+
+
+      <label>الترتيب</label>
+      <input type="number" formControlName="level_order">
+
+      <div class="footer-buttons">
+        <button class="btn-save" type="button" (click)="save()">💾 حفظ</button>
+        <button class="btn-exit" type="button" (click)="closeDialog()">❌ خروج</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+}

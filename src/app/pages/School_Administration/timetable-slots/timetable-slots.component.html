@@ -1,0 +1,124 @@
+<div class="page-container">
+
+  <div class="top-bar">
+    <button class="btn-new" (click)="openDialog()">
+      <svg width="16" height="16" viewBox="0 0 24 24"></svg>
+      <span>حصة جديدة</span>
+    </button>
+
+    <div class="action-icons">
+      <button class="icon-btn"></button>
+      <button class="icon-btn"></button>
+      <button class="icon-btn"></button>
+      <button class="icon-btn"></button>
+      <button class="icon-btn"></button>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <input type="text" [(ngModel)]="search" (input)="applyFilter()" placeholder="بحث عن حصة..." />
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <!-- <th>#</th> -->
+          <th>الصف</th>
+          <th>المقرر</th>
+          <th>اليوم</th>
+          <th>من</th>
+          <th>إلى</th>
+          <th>تعديل</th>
+          <th>حذف</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (slot of FilteredTimeSolt; track slot.id) {
+        <tr>
+          <!-- <td>{{ slot.id }}</td> -->
+          <td>{{ getClassroomName(slot.classroom_id) }}</td>
+          <td>{{ getCourseName(slot.course_id) }}</td>
+          <td>{{ slot.weekday }}</td>
+          <td>{{ slot.start_time }}</td>
+          <td>{{ slot.end_time }}</td>
+
+          <td>
+            <button class="icon-btn-table edit" (click)="edit(slot)">✎</button>
+          </td>
+
+          <td>
+            <button class="icon-btn-table delete" (click)="delete(slot.id!)">🗑</button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+@if (isDialogOpen) {
+<div class="dialog-overlay" (click)="closeDialog()">
+  <div class="dialog-box" (click)="$event.stopPropagation()">
+
+    <div class="dialog-header">
+      <button class="close-btn" (click)="closeDialog()">✖</button>
+      <h3>{{ dialogTitle }}</h3>
+    </div>
+
+    <form [formGroup]="form" class="dialog-body">
+
+      <div class="form-grid">
+        <div class="form-col">
+
+          <label>الصف</label>
+          <select formControlName="classroom_id">
+            <option value="" disabled selected>اختر الصف</option>
+            @for (c of classrooms; track c.id) {
+            <option [value]="c.id">{{ c.name_ar ?? c.name }}</option>
+            }
+          </select>
+
+          <label>المقرر</label>
+          <select formControlName="course_id">
+            <option value="" disabled selected>اختر المقرر</option>
+
+            @for (co of courses; track co.id) {
+            <option [value]="co.id">
+              {{ co.subject_name }} - {{ co.grade_name }} ({{ co.academic_year }})
+            </option>
+            }
+          </select>
+
+
+          <label>اليوم</label>
+          <select formControlName="weekday">
+            <option value="" disabled selected>اختر اليوم</option>
+            @for (d of weekdays; track d.value) {
+            <option [value]="d.value">{{ d.label }}</option>
+            }
+          </select>
+
+
+        </div>
+
+        <div class="form-col">
+          <label>وقت البداية</label>
+          <input type="time" formControlName="start_time" />
+
+          <label>وقت النهاية</label>
+          <input type="time" formControlName="end_time" />
+        </div>
+      </div>
+
+      <div class="footer-buttons">
+        <button type="button" class="btn-save" (click)="save()">💾 حفظ</button>
+        <button type="button" class="btn-exit" (click)="closeDialog()">❌ خروج</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+}

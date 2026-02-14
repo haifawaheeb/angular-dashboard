@@ -1,0 +1,55 @@
+{
+
+   "login": "تسجيل الدخول",
+  "username": "اسم المستخدم",
+  "password": "كلمة المرور",
+  "settings": "الإعدادات",
+  "Label": "التسمية",
+  "showcolumn": "الأعمدة الظاهرة",
+  "hiddencolumn": "الأعمدة المخفية",
+  "save": "حفظ",
+  "def": "افتراضي",
+  "Exit": "خروج",
+  "sign_in": "تسجيل الدخول",
+
+  "School_Administration": "بيانات المدرسة",
+  "SYSTEM_SETTINGS": "إعدادات النظام",
+  "REPORTS_TRACKING": "التقارير والمتابعة",
+  "ADMIN": "الإدارة",
+
+  "USERS_PERMISSIONS": "المستخدمون والصلاحيات",
+  "MESSAGES_ALERTS_SETTINGS": "إعدادات التنبيهات والرسائل",
+  "TOOLS_BACKUP": "النسخ الاحتياطي والاستعادة",
+
+  "RECORDS_PROCEDURES": "السجلات والإجراءات",
+  "ASSESSMENT_POINTS_GRADES": "نقاط التقييم والدرجات",
+
+  "ACADEMIC_STAGES": "المراحل الدراسية",
+  "USERS": "المستخدمون",
+
+  "STUDENT": "الطلاب",
+  "LESSONS": "الدروس",
+  "COURSES": "الدورات",
+  "CLASS_ROOM": "الفصول",
+
+  "DASHBORD": "لوحة التحكم",
+  "ADMIN_DASHBORD": "لوحة الإدارة",
+  "ADMIN_ROLE": "صلاحيات الإدارة",
+
+  "PROFILES": "الملفات الشخصية",
+  "PYMENTS": "المدفوعات",
+  "VIDEOS": "الفيديوهات",
+  "HEADER": "الهيدر",
+  "TOP_MENU": "القائمة العلوية",
+  "GARADES": "الدرجات",
+  "RECORDS": "السجلات",
+  "SETTINGS": "الإعدادات",
+  "BACKUP": "النسخ الاحتياطي",
+  "CLASSROOMS": "الشعب الدراسية",
+  "SUBJECTS": "المواد",
+  "SignMedia": "فيديو الاشارة",
+  "timetable_slots": "الجدول الزمني",
+  "attendance_records": "سجل الحضور"
+}
+
+

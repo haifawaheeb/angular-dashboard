@@ -1,0 +1,103 @@
+<div class="page-container">
+
+  <div class="top-bar">
+    <button class="btn-new" (click)="openDialog()">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+        <line x1="12" y1="18" x2="12" y2="12" />
+        <line x1="9" y1="15" x2="15" y2="15" />
+      </svg>
+      <span>فيديو جديد</span>
+    </button>
+
+    <div class="action-icons">
+      <button class="icon-btn"></button>
+      <button class="icon-btn"></button>
+      <button class="icon-btn"></button>
+      <button class="icon-btn"></button>
+      <button class="icon-btn"></button>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <input type="text" [(ngModel)]="search" (input)="applyFilter()" placeholder="بحث ...">
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <!-- <th>#</th> -->
+          <th>المسار</th>
+          <th>الصورة</th>
+          <th>المدة</th>
+          <th>النص العربي</th>
+          <th>تاريخ الإنشاء</th>
+          <th>تعديل</th>
+          <th>حذف</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (v of FilteredVedioService; track v.id) {
+        <tr>
+          <!-- <td>{{ v.id }}</td> -->
+          <td>{{ v.file_path }}</td>
+
+          <td>
+            <img [src]="v.thumbnail_path" width="60" height="40" *ngIf="v.thumbnail_path">
+          </td>
+
+          <td>{{ v.duration_sec }} ثانية</td>
+          <td>{{ v.transcription_ar }}</td>
+          <td>{{ v.created_at | date:'yyyy-MM-dd' }}</td>
+
+          <td><button class="icon-btn-table edit" (click)="edit(v)">✎</button></td>
+          <td><button class="icon-btn-table delete" (click)="delete(v.id)">🗑</button></td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+@if (isDialogOpen) {
+<div class="dialog-overlay" (click)="closeDialog()">
+
+  <div class="dialog-box" (click)="$event.stopPropagation()">
+
+    <div class="dialog-header">
+      <button class="close-btn" (click)="closeDialog()">✖</button>
+      <h3>{{ dialogTitle }}</h3>
+    </div>
+
+    <form [formGroup]="form" class="dialog-body">
+
+      <label>ملف الفيديو</label>
+      <input type="text" formControlName="file_path">
+
+      <label>الصورة المصغرة</label>
+      <input type="text" formControlName="thumbnail_path">
+
+      <label>المدة بالثواني</label>
+      <input type="number" formControlName="duration_sec">
+
+      <label>النص العربي</label>
+      <textarea formControlName="transcription_ar"></textarea>
+
+      <label>النص الإنجليزي</label>
+      <textarea formControlName="transcription_en"></textarea>
+
+      <div class="footer-buttons">
+        <button type="button" class="btn-save" (click)="save()">💾 حفظ</button>
+        <button type="button" class="btn-exit" (click)="closeDialog()">❌ خروج</button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+}

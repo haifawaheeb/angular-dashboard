@@ -1,0 +1,130 @@
+.footer_style {
+  position: relative;
+  width: 100%;
+  clear: both;
+  margin-top: 40px;
+  z-index: 1;
+  position: absolute;
+  position: relative;
+  margin-top: 10%;
+}
+
+.Formatted {
+  background-color: #3386ef;
+  background: #8910d9;
+  direction: rtl;
+}
+
+.hearder_style {
+  background: #8910d9;
+  color: hwb(260 96% 2%);
+  text-align: center;
+  padding: 60px 20px;
+  font-family: "text-align";
+  width: 100%;
+  height: 10%;
+}
+
+.hearder_style p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.li_Format {
+  align-items: right;
+  // flex: 1 0 0;
+  // background: #E0E6E6;
+  color: #333;
+  text-align: center;
+  padding: 4px 0 6px 0;
+  font-size: 1rem;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+}
+
+/* تأثير عند المرور */
+.menu-item:hover {
+  background: #bfad34;
+  color: #fff;
+}
+
+.todo-card {
+  background: #f2f4f8;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(60, 60, 60, 0.13);
+  width: 480px;
+  margin-top: 40px;
+}
+
+.todo-title {
+  text-align: center;
+  color: #3386ef;
+  font-weight: bold;
+  margin-bottom: 32px;
+}
+
+
+
+.task-list li {
+  padding: 10px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid #ddd;
+  flex-direction: row;
+  background: #fcfcfc;
+  border-radius: 4px;
+}
+
+.Icontantas {
+  direction: rtl;
+  background: #8910d9;
+  color: #f7f2f2;
+  width: 20%;
+}
+
+.Precenteges {
+  width: 10%;
+  color: #000;
+  padding: 10px;
+  align-items: center;
+  border-radius: 4px;
+  margin: 20px;
+  background: #8910d9;
+}
+
+.values-container1 {
+  width: 30px;
+  color: #b97809;
+  padding: 20px;
+  align-items: center;
+  border-radius: 20px;
+  margin: 20px;
+  background-color: #efecf1;
+  font-size: x-small;
+}
+
+.value-card1 {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px hwb(264 5% 28% / 0.08);
+  padding: 30px 20px;
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hearder_style {
+  background: #8910d9;
+  color: hwb(260 96% 2%);
+  text-align: center;
+  padding: 60px 20px;
+  font-family: "text-align";
+  width: 100%;
+  height: 10%;
+}

@@ -1,0 +1,42 @@
+<div class="page-container">
+
+  <!-- ⭐ الشريط العلوي -->
+  <div class="top-bar">
+    <button class="btn-new" (click)="openDialog()">جديد</button>
+
+    <div class="action-icons">
+      <button class="icon-btn">↻</button>
+      <button class="icon-btn">📄</button>
+      <button class="icon-btn">🗂</button>
+    </div>
+  </div>
+
+  <!-- ⭐ الجدول -->
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          @for (col of config.columns; track col.key) {
+            <th>{{ col.label }}</th>
+          }
+          <th>إجراءات</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (row of config.data; track row) {
+          <tr>
+            @for (col of config.columns; track col.key) {
+              <td>{{ row[col.key] }}</td>
+            }
+
+            <td>
+              <button class="delete-btn" (click)="config.onDelete(row.id)">🗑</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+</div>

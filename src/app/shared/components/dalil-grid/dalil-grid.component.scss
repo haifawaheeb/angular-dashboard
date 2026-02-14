@@ -1,0 +1,44 @@
+.dalil-grid-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dalil-grid-header {
+  display: flex;
+  align-items: center;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.table-container {
+  width: 100%;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.dalil-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dalil-table th,
+.dalil-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.no-data-row td {
+  text-align: center;
+  color: red;
+}
+
+.dalil-grid-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}

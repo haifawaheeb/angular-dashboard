@@ -1,0 +1,58 @@
+<div class="login-page">
+  <div class="wave-bg"></div>
+  <div class="login-card">
+    <h3 class="title"> منصة دليل لتعليم لغة الاشارة </h3>
+
+    <form (submit)="$event.preventDefault();  onLogin()" method="post">
+      <mat-form-field  class="full-width">
+        <mat-label>اسم المستخدم </mat-label>
+        <input matInput type="text" [(ngModel)]="username" name="username" required />
+        <mat-icon matSuffix> mail</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field  class="full-width">
+        <mat-label style="color: black;">كلمة المرور</mat-label>
+        <input matInput type="password" [(ngModel)]="password" name="password" required />
+        <mat-icon matSuffix> lock</mat-icon>
+      </mat-form-field>
+
+      <div class="options">
+        <mat-checkbox [(ngModel)]="rememberMe" name="rememberMe" style="color: black;">
+          تذكرني
+        </mat-checkbox>
+
+        <mat-radio-group [(ngModel)]="language" name="language" style="color: black;">
+          <mat-radio-button value="ar">Arabic</mat-radio-button>
+          <mat-radio-button value="en">English</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <button mat-flat-button color="primary" class="full-width" type="button" (click)= "onLogin()">
+        تسجيل الدخول
+      </button>
+
+      <button mat-stroked-button color="accent" class="full-width fingerprint-btn">
+        <mat-icon>fingerprint</mat-icon> تسجيل الدخول بالبصمة
+      </button>
+      <button mat-stroked-button color="accent" class="full-width fingerprint-btn" >
+        <mat-icon>fingerprint</mat-icon> تسجيل الدخول ببصمة الوجه
+      </button>
+    </form>
+
+    <div class="links">
+      <a href="#">تسجيل برقم الجوال</a><br />
+      <a href="#">إنشاء حساب جديد</a><br />
+      <a href="#">نسيت كلمة المرور؟</a>
+      <a href="#" style="color: #DC0909FF;">استعادة </a>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="loginResponse" class="alert alert-success" style="margin-top: 20px;">
+  <strong>✅ تسجيل الدخول ناجح!</strong><br />
+  <p>Access Token: {{ loginResponse.access }}</p>
+</div>
+
+<div *ngIf="loginError" class="alert alert-danger" style="margin-top: 20px;">
+  <strong>❌ خطأ:</strong> {{ loginError }}
+</div>

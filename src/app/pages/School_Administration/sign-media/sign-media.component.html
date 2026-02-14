@@ -1,0 +1,104 @@
+<div class="page-container">
+
+  <div class="top-bar">
+    <button class="btn-new" (click)="openDialog()">
+      <span>جديد</span>
+    </button>
+  </div>
+
+  <div class="filter-bar">
+    <input type="text" [(ngModel)]="search" (input)="applyFilter()" placeholder="بحث عن الدرس ...">
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <!-- <th>رقم الدرس</th> -->
+          <th>مسار ملف الدرس</th>
+          <th>الصورة المصغّرة</th>
+          <th>مدة الدرس (بالثواني)</th>
+          <th>النص المرافق (عربي)</th>
+          <th>النص المرافق (إنجليزي)</th>
+          <th>تاريخ الإضافة</th>
+          <td>أضافة </td>
+          <td> تعديل </td>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (media of filtered; track media.id) {
+        <tr>
+          <!-- <td>{{ media.id }}</td> -->
+          <td>{{ media.file_path }}</td>
+          <td>{{ media.thumbnail_path }}</td>
+          <td>{{ media.duration_sec }}</td>
+          <td>{{ media.transcription_ar }}</td>
+          <td>{{ media.transcription_en }}</td>
+          <td>{{ media.created_at | date:'short' }}</td>
+          <td>
+            <button class="icon-btn-table edit" (click)="edit(media)">✎</button>
+          </td>
+
+          <td>
+            <button class="icon-btn-table delete" (click)="delete(media.id)">🗑</button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+@if (isDialogOpen) {
+<div class="dialog-overlay" (click)="closeDialog()">
+  <div class="dialog-box" (click)="$event.stopPropagation()">
+
+    <div class="dialog-header">
+      <button class="close-btn" (click)="closeDialog()">✖</button>
+      <h3>{{ dialogTitle }}</h3>
+    </div>
+
+    <form [formGroup]="form" class="dialog-body">
+      <div class="form-grid">
+
+        <!-- العمود الأول -->
+        <div class="form-col">
+
+          <label>مسار ملف الدرس</label>
+          <input type="text" formControlName="file_path" placeholder="مثال: /media/lessons/video.mp4" />
+
+          <label>الصورة المصغّرة</label>
+          <input type="text" formControlName="thumbnail_path" placeholder="مثال: /media/thumbnails/img.jpg" />
+
+          <label>مدة الدرس (بالثواني)</label>
+          <input type="number" formControlName="duration_sec" placeholder="مثال: 120" min="1" />
+
+        </div>
+
+        <!-- العمود الثاني -->
+        <div class="form-col">
+
+          <label>النص المرفق (عربي)</label>
+          <textarea formControlName="transcription_ar" placeholder="اكتب النص العربي المرافق للفيديو"></textarea>
+
+          <label>النص المرفق (إنجليزي)</label>
+          <textarea formControlName="transcription_en" placeholder="Write the English transcription"></textarea>
+
+          <label>تاريخ الإضافة</label>
+          <input type="datetime-local" formControlName="created_at" />
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-buttons">
+        <button type="button" class="btn-save" (click)="save()">💾 حفظ</button>
+        <button type="button" class="btn-exit" (click)="closeDialog()">❌ خروج</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+}

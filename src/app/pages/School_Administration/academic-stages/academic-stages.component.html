@@ -1,0 +1,78 @@
+<div class="page-container">
+
+  <div class="top-bar">
+    <button class="btn-new" (click)="openDialog()">
+      <span>جديد</span>
+    </button>
+
+    <div class="filter-bar">
+      <input type="text" [(ngModel)]="search" (input)="applyFilter()" placeholder="بحث ...">
+    </div>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <!-- <th>#</th> -->
+          <th>الاسم بالعربي</th>
+          <th>الاسم بالإنجليزي</th>
+          <th>الترتيب</th>
+          <th>تعديل</th>
+          <th>حذف</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (s of Filteredacademictages; track s.id) {
+        <tr>
+          <!-- <td>{{ s.id }}</td> -->
+          <td>{{ s.name_ar }}</td>
+          <td>{{ s.name_en }}</td>
+          <td>{{ s.stage_index_order }}</td>
+
+          <td>
+            <button class="icon-btn-table edit" (click)="editAcademicstage(s)">✎</button>
+          </td>
+
+          <td>
+            <button class="icon-btn-table delete" (click)="deleteAcademicstage(s.id!)">🗑</button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+@if (isDialogOpen) {
+<div class="dialog-overlay" (click)="closeDialog()">
+  <div class="dialog-box" (click)="$event.stopPropagation()">
+
+    <div class="dialog-header">
+      <button class="close-btn" (click)="closeDialog()">✖</button>
+      <h3>{{ dialogTitle }}</h3>
+    </div>
+
+    <form [formGroup]="form" class="dialog-body"   (ngSubmit)="saveAcademicstage()">
+
+      <label>الاسم بالعربي</label>
+      <input formControlName="name_ar">
+
+      <label>الاسم بالإنجليزي</label>
+      <input formControlName="name_en">
+
+      <label>الترتيب</label>
+      <input type="number" formControlName="stage_index_order">
+
+
+      <div class="footer-buttons">
+        <button type="submit" class="btn-save" >💾 حفظ</button>
+        <button type="button" class="btn-exit" (click)="closeDialog()">❌ خروج</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+}

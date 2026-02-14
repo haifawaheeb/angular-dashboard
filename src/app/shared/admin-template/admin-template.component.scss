@@ -1,0 +1,122 @@
+:host {
+  direction: rtl;
+  display: block;
+  width: 100%;
+  font-family: "Cairo", sans-serif;
+}
+
+/* الحاوية العامة */
+.admin-container {
+  padding: 15px;
+  background: #f4f9ff;
+}
+
+/* العنوان العلوي */
+.header {
+  background: linear-gradient(to left, #1565c0, #1e88e5);
+  padding: 12px 20px;
+  border-radius: 8px;
+  color: white;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+
+  h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #e3f2fd;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #bbdefb;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.07);
+}
+
+/* search field */
+.search-field {
+  margin-right: auto;
+  width: 280px;
+
+  input {
+    font-size: 14px;
+  }
+}
+
+/* جدول البيانات */
+table {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+  border: 1px solid #d0d7e1;
+}
+
+/* رأس الجدول */
+.mat-header-row {
+  background: #1565c0 !important;
+  color: white !important;
+}
+
+.mat-header-cell {
+  font-weight: bold;
+  font-size: 14px;
+  padding: 12px !important;
+  border-left: 1px solid #0d47a1;
+}
+
+/* صفوف الجدول */
+.mat-row {
+  transition: 0.2s ease;
+}
+
+.mat-row:hover {
+  background: #e3f2fd !important;
+}
+
+/* خلايا الجدول */
+.mat-cell {
+  padding: 10px !important;
+  font-size: 13px;
+  color: #333;
+  border-left: 1px solid #e0e0e0;
+}
+
+/* عمود الإجراءات */
+.mat-icon-button {
+  background: #e8f0fe;
+  border: 1px solid #bbdefb;
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 6px !important;
+}
+
+.mat-icon-button:hover {
+  background: #bbdefb;
+}
+
+.mat-icon {
+  font-size: 19px;
+}
+
+/* زر الإضافة */
+button[color="primary"] mat-icon {
+  color: #0d47a1;
+}
+
+/* زر التحديث */
+button[color="accent"] mat-icon {
+  color: #0277bd;
+}
+
+/* زر الطباعة */
+button[color="warn"] mat-icon {
+  color: #c62828;
+}

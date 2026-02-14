@@ -1,0 +1,99 @@
+<div class="page-container">
+
+  <div class="top-bar">
+    <button class="btn-new" (click)="openDialog()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+        <line x1="12" y1="18" x2="12" y2="12"></line>
+        <line x1="9" y1="15" x2="15" y2="15"></line>
+      </svg>
+      <span>طالب جديد</span>
+    </button>
+  </div>
+
+  <div class="filter-bar">
+    <input type="text" [(ngModel)]="search" (input)="applyFilter()" placeholder="بحث عن طالب ...">
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <!-- <th>#</th> -->
+          <th>الاسم</th>
+          <th>الإيميل</th>
+          <th>الهاتف</th>
+          <th>الحالة</th>
+          <th>تعديل</th>
+          <th>حذف</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (s of filteredStudents; track s.id) {
+          <tr>
+            <!-- <td>{{ s.id }}</td> -->
+            <td>{{ s.full_name }}</td>
+            <td>{{ s.email }}</td>
+            <td>{{ s.phone }}</td>
+            <td>{{ s.is_active ? "نشط" : "غير نشط" }}</td>
+
+            <td>
+              <button class="icon-btn-table edit" (click)="editStudent(s)">✎</button>
+            </td>
+
+            <td>
+              <button class="icon-btn-table delete" (click)="deleteStudent(s.id!)">🗑</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+@if (isDialogOpen) {
+  <div class="dialog-overlay" (click)="closeDialog()">
+
+    <div class="dialog-box" (click)="$event.stopPropagation()">
+
+      <div class="dialog-header">
+        <button class="close-btn" (click)="closeDialog()">✖</button>
+        <h3>{{ dialogTitle }}</h3>
+      </div>
+
+      <form [formGroup]="form" class="dialog-body">
+
+        <div class="form-grid">
+          <div class="form-col">
+            <label>الاسم</label>
+            <input formControlName="full_name">
+
+            <label>الإيميل</label>
+            <input type="email" formControlName="email">
+
+            <label>الهاتف</label>
+            <input formControlName="phone">
+          </div>
+
+          <div class="form-col">
+            <label>الحالة</label>
+            <select formControlName="is_active">
+              <option [value]="true">نشط</option>
+              <option [value]="false">غير نشط</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="footer-buttons">
+          <button type="button" class="btn-save" (click)="saveStudent()">💾 حفظ</button>
+          <button type="button" class="btn-exit" (click)="closeDialog()">❌ خروج</button>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+}

@@ -1,0 +1,165 @@
+<div class="page-container">
+  <!-- الشريط العلوي -->
+  <div class="top-bar">
+    <button class="btn btn-new" (click)="openNewCourseDialog()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+        <line x1="12" y1="18" x2="12" y2="12"></line>
+        <line x1="9" y1="15" x2="15" y2="15"></line>
+      </svg>
+      <span>جديد</span>
+    </button>
+
+    <div class="action-icons">
+      <button class="icon-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 11A8.1 8.1 0 0 0 4.5 9M4 5v4h4" />
+          <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
+        </svg>
+      </button>
+
+      <button class="icon-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+          <rect x="6" y="14" width="12" height="8" />
+        </svg>
+      </button>
+
+      <button class="icon-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+          <polyline points="17 21 17 13 7 13 7 21"></polyline>
+          <polyline points="7 3 7 8 15 8"></polyline>
+        </svg>
+      </button>
+
+      <button class="icon-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12.22 2h-4.22a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8.22M16 2l5 5h-5V2z" />
+        </svg>
+      </button>
+
+      <button class="icon-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- شريط البحث والفلاتر -->
+  <div class="filter-bar">
+    <select class="filter-select">
+      <option>تحديد الكل</option>
+    </select>
+    <div class="search-box">
+      <input type="text" placeholder="ادخل مفتاح البحث...">
+      <label>حقل البحث</label>
+    </div>
+  </div>
+
+  <!-- جدول البيانات -->
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>رقم المستخدم</th>
+          <th>الاسم الكامل </th>
+          <th>رابط الصورة الرمزية </th>
+          <th>اللغة المحلية </th>
+          <th>المنطقة الزمنية </th>
+          <th>نص لغة الإشارة المفضلة</th>
+          <th>متطلبات إمكانية الوصول </th>
+          <th>حذف </th>
+          <th> تعديل </th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of data; track item.user_id) {
+        <tr>
+          <td>{{ item.user_id }}</td>
+          <td>{{ item.full_name }}</td>
+          <td>{{ item.avatar_url }}</td>
+          <td>{{ item.bio}}</td>
+          <td>{{ item.locale }}</td>
+          <td>{{ item.timezone }}</td>
+          <td>{{ item.preferred_sign_language }}</td>
+          <td>{{ item.accessibility_needs }}</td>
+          <td>
+            <div class="table-actions">
+              <button class="icon-btn-table delete" (click)="deleteItem(item.user_id)" title="حذف">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+              </button>
+              <button class="icon-btn-table delete" (click)="deleteItem(item.user_id)" title="حذف">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+              </button>
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- نافذة الحوار -->
+@if (isDialogOpen) {
+<div class="dialog-overlay" (click)="closeDialog()">
+  <div class="dialog-box" (click)="$event.stopPropagation()">
+    <div class="dialog-header">
+      <h3>🧾 بروفايل جديد</h3>
+      <button class="close-btn" (click)="closeDialog()">✖</button>
+    </div>
+
+    <form [formGroup]="ProfileForm" class="dialog-body">
+      <h4 class="section-title">البروفايل </h4>
+
+      <div class="form-grid">
+        <!-- العمود الأيمن -->
+        <div class="form-col">
+          <label>رقم المستخدم</label>
+          <input type="text" formControlName="user_id" placeholder="يُحدد تلقائياً" readonly>
+
+          <label>الاسم الكامل </label>
+          <input type="text" formControlName="full_name" placeholder="هيفاء وهيب عبدالرحمن ">
+
+          <label>رابط الصورة </label>
+          <input type="file" formControlName="avatar_url" (change)="onFileSelected($event)" accept="image/*">
+          <button mat-raised-button color="warn" *ngIf="previewUrl" (click)="resetFile()">
+            🔄 إعادة الاختيار
+          </button>
+
+          <label>النص المحلي </label>
+          <input type="text" formControlName="bio" placeholder="">
+        </div>
+
+        <!-- العمود الأيسر -->
+        <div class="form-col">
+          <label>المنصقة الزمنية</label>
+          <input type="text" formControlName="timezone" placeholder="Asia/Amman">
+          <label> لغة الاشارة المفضلة</label>
+          <input type="text" formControlName="preferred_sign_language" placeholder="">
+
+          <label> تفضيلات الترجمه </label>
+          <input type="Json" formControlName="accessibility_needs">
+        </div>
+      </div>
+
+      <div class="footer-buttons">
+        <button type="button" class="btn btn-save" (click)="onSave()">💾 حفظ</button>
+        <button type="button" class="btn btn-undo" (click)="onUndo()">↩️ تراجع</button>
+        <button type="button" class="btn btn-exit" (click)="closeDialog()">❌ خروج</button>
+      </div>
+    </form>
+  </div>
+</div>
+}

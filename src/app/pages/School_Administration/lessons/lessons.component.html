@@ -1,0 +1,117 @@
+<div class="page-container">
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <button class="btn-new" (click)="openDialog()">درس جديد</button>
+  </div>
+
+  <!-- Filter -->
+  <div class="filter-bar">
+    <input
+      type="text"
+      [(ngModel)]="search"
+      (input)="applyFilter()"
+      placeholder="بحث عن الدرس..."
+    >
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <!-- <th>#</th> -->
+          <th>عنوان الدرس</th>
+          <th>نوع الدرس</th>
+          <th>الوصف</th>
+          <th>الترتيب</th>
+          <th>منشور؟</th>
+          <th>تعديل</th>
+          <th>حذف</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (l of filteredLessons; track l.id) {
+        <tr>
+          <!-- <td>{{ l.id }}</td> -->
+          <td>{{ l.title_ar }}</td>
+          <td>{{ l.lesson_type }}</td>
+          <td>{{ l.description_ar }}</td>
+          <td>{{ l.order_index }}</td>
+          <td>{{ l.is_published ? 'نعم' : 'لا' }}</td>
+          <td>
+            <button (click)="editLesson(l)" class="icon-btn-table edit">✎</button>
+          </td>
+          <td>
+            <button (click)="deleteLesson(l.id)" class="icon-btn-table delete">🗑</button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Dialog -->
+@if (isDialogOpen) {
+<div class="dialog-overlay"  (click)="closeDialog()">
+  <div class="dialog-box" (click)="$event.stopPropagation()">
+ <div class="dialog-header">
+    <h3>{{ dialogTitle }}</h3></div>
+    <form [formGroup]="form">
+<div class="form-grid">
+
+        <div class="form-col">
+      <label>الكورس</label>
+      <select formControlName="course">
+  <option value="">-- اختر الكورس --</option>
+  @for (c of courses; track c.id) {
+    <option [value]="c.id">
+      {{ c.subject_name }} - {{ c.grade_name }}
+    </option>
+  }
+</select>
+
+      <label>العنوان (عربي)</label>
+      <input formControlName="title_ar">
+
+      <label>العنوان (إنجليزي)</label>
+      <input formControlName="title_en">
+
+      <label>الوصف (عربي)</label>
+      <textarea formControlName="description_ar"></textarea>
+</div>
+
+<div class="form-col">
+      <label>الوصف (إنجليزي)</label>
+      <textarea formControlName="description_en"></textarea>
+
+
+      <label>نوع الدرس</label>
+      <select formControlName="lesson_type">
+        <option value="interactive">تفاعلي</option>
+        <option value="video">فيديو</option>
+        <option value="text">نصي</option>
+      </select>
+
+<div class="form-col">
+      <label>الترتيب</label>
+      <input type="number" formControlName="order_index">
+</div>
+      <label>منشور؟</label>
+      <select formControlName="is_published">
+        <option [value]="true">نعم</option>
+        <option [value]="false">لا</option>
+      </select>
+      </div>
+</div>
+      <div class="footer-buttons">
+        <button type="button" (click)="save()" class="btn-save">💾 حفظ</button>
+        <button type="button" (click)="closeDialog()" class="btn-exit">❌ خروج</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+}

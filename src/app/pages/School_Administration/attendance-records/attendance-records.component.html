@@ -1,0 +1,88 @@
+<div class="page-container">
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <button class="btn-new" (click)="openDialog()">جديد</button>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>الطالب</th>
+          <th>الحصة</th>
+          <th>الحالة</th>
+          <th>تاريخ التسجيل</th>
+          <th>تعديل</th>
+          <th>حذف</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (item of filtered; track item.id) {
+          <tr>
+            <td>{{ item.student_name }}</td>
+            <td>{{ item.session_name }}</td>
+            <td>{{ item.status }}</td>
+            <td>{{ item.recorded_at | date:'yyyy-MM-dd' }}</td>
+
+            <td><button type="button" (click)="edit(item)">✎</button></td>
+            <td><button type="button" (click)="delete(item.id)">🗑</button></td>
+          </tr>
+        }
+      </tbody>
+
+    </table>
+  </div>
+
+</div>
+
+<!-- Dialog -->
+@if (isDialogOpen) {
+  <div class="dialog-overlay" (click)="closeDialog()">
+    <div class="dialog-box" (click)="$event.stopPropagation()">
+
+      <div class="dialog-header">
+        <h3>{{ dialogTitle }}</h3>
+        <button type="button" (click)="closeDialog()">✖</button>
+      </div>
+
+      <form [formGroup]="form">
+
+        <!-- Session -->
+        <label>الحصة</label>
+        <select formControlName="session_id">
+          <option value="">اختر حصة</option>
+          @for (x of sessions; track trackById) {
+            <option [value]="x.id">{{ x.label }}</option>
+          }
+        </select>
+
+        <!-- Student -->
+        <label>الطالب</label>
+        <select formControlName="student_id">
+          <option value="">اختر طالب</option>
+          @for (s of students; track trackById) {
+            <option [value]="s.id">{{ s.label }}</option>
+          }
+        </select>
+
+        <!-- Status -->
+        <label>الحالة</label>
+        <select formControlName="status">
+          <option value="present">حاضر</option>
+          <option value="absent">غائب</option>
+          <option value="late">متأخر</option>
+        </select>
+
+        <div class="footer-buttons">
+          <button type="button" (click)="save()">💾 حفظ</button>
+          <button type="button" (click)="closeDialog()">❌ خروج</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+}

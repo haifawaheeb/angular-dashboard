@@ -1,0 +1,21 @@
+<div class="tabs-header" *ngIf="tabs.length > 0">
+  <div
+    *ngFor="let tab of tabs"
+    class="tab"
+    [class.active]="tab.id === activeTabId"
+    (click)="activate(tab.id)"
+  >
+    <span class="label">{{ tab.label }}</span>
+
+    <button
+      class="close"
+      (click)="close(tab.id, $event)">
+      ×
+    </button>
+  </div>
+</div>
+
+<div class="tabs-body">
+  <!-- هنا يحقن الـ router-outlet القادم من MainLayout -->
+  <ng-content></ng-content>
+</div>

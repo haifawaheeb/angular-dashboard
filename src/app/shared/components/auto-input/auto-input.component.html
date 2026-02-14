@@ -1,0 +1,67 @@
+<div   class="row-center"
+  [hidden]="hidden"
+  [dir]="root"
+
+  ngModelGroup="value"
+>
+  <!-- Label -->
+  <label  class="row-center"
+    *ngIf="label"
+    [style.font-size]="FontSize"
+    [style.font-family]="FontFamily"
+    [style.color]="LabelColor"
+
+  >
+    {{ label }}
+  </label>
+
+  <!-- Input + search button -->
+  <div  class="row-center">
+    <input
+      #input
+      [style.background-color]="disabled ? disableColor || backColor : backColor"
+      [style.color]="FontColor"
+      [type]="type"
+      [name]="name"
+      [id]="name"
+      [(ngModel)]="value"
+      autocomplete="off"
+      [placeholder]="placeholder"
+      [required]="required"
+      [disabled]="disabled"
+      (change)="onChange()"
+      (blur)="onBlur()"
+      (focus)="onFocus($event)"
+      [class]="classstyle"
+      [ngStyle]="Stylepravte || {}"
+      (focusout)="focusoutMothed($event)"
+      (keypress)="keypressMothed($event)"
+      (input)="ChangeValueMothed()"
+      (ngModelChange)="onChange()"
+      (keyup)="onkeyup($event)"
+      (keydown)="Onkeydown($event)"
+      [style.width]="showSearch ? '85%' : '100%'"
+      [style.font-size]="FontSize"
+      [style.font-family]="FontFamily"
+    />
+
+    <!-- زر البحث -->
+    <button
+      *ngIf="showSearch"
+      [disabled]="disabled"
+      mat-button
+      mat-raised-button
+      type="button"
+      class="srchbtn"
+      color="accent"
+      [id]="name + 'search'"
+      [name]="name + 'search'"
+      (click)="OpenDlg($event)"
+    >
+      <mat-icon>search</mat-icon>
+    </button>
+
+    <!-- أيقونة ثابتة -->
+    <mat-icon *ngIf="UsingIcon" class="srchbtn Icon">{{ Icon }}</mat-icon>
+  </div>
+</div>

@@ -1,0 +1,257 @@
+
+<main class="min-h-screen bg-white text-slate-800">
+
+  <!-- Navbar -->
+  <nav class="navbar sticky top-0 z-40 bg-slate-50/95 border-b border-violet-200/40">
+    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between py-4">
+
+      <!-- Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center"
+             style="background: linear-gradient(135deg,#8b5cf6,#ec4899);">
+          <svg width="28" height="28" viewBox="0 0 30 30" fill="none">
+            <path d="M8 11 L8 19 M15 9 L15 21 M22 11 L22 19"
+                  stroke="white" stroke-width="2" stroke-linecap="round" />
+            <circle cx="8" cy="15" r="1.5" fill="white" />
+            <circle cx="15" cy="15" r="1.5" fill="white" />
+            <circle cx="22" cy="15" r="1.5" fill="white" />
+          </svg>
+        </div>
+        <span class="text-2xl font-extrabold"
+              style="background:linear-gradient(135deg,#8b5cf6,#ec4899);
+                     -webkit-background-clip:text; -webkit-text-fill-color:transparent;">
+          دليل
+        </span>
+      </div>
+
+      <!-- Links -->
+      <div class="hidden md:flex items-center gap-6 text-sm font-semibold">
+        <button class="hover:text-violet-600" (click)="scrollTo('home')">الرئيسية</button>
+        <button class="hover:text-violet-600" (click)="scrollTo('about')">من نحن</button>
+        <button class="hover:text-violet-600" (click)="scrollTo('services')">الخدمات</button>
+        <button class="hover:text-violet-600" (click)="scrollTo('contact')">تواصل معنا</button>
+
+        <button
+          (click)="openLoginModal()"
+          class="px-5 py-2 rounded-xl text-sm font-bold text-white shadow-md"
+          style="background:linear-gradient(135deg,#8b5cf6,#ec4899);">
+          تسجيل الدخول
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="home" class="fade-in-up py-16 px-6 bg-gradient-to-br from-slate-50 to-white">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+
+      <div>
+        <div
+          class="inline-block mb-4 px-4 py-2 rounded-full border border-violet-300/60 bg-violet-50/70 text-xs font-bold text-violet-700">
+          ✨ منصة تعليمية متطورة
+        </div>
+
+        <h1 class="text-4xl md:text-5xl font-black mb-4">
+          منصة دليل
+        </h1>
+
+        <h2 class="text-2xl md:text-3xl font-bold mb-4"
+            style="background:linear-gradient(135deg,#8b5cf6,#ec4899);
+                   -webkit-background-clip:text; -webkit-text-fill-color:transparent;">
+          رحلتك لتعلم لغة الإشارة تبدأ هنا
+        </h2>
+
+        <p class="text-base md:text-lg text-slate-600 mb-8 leading-relaxed">
+          انضم إلى آلاف المتعلمين واكتشف عالم لغة الإشارة بطريقة تفاعلية وممتعة.
+        </p>
+
+        <div class="flex flex-wrap gap-4 mb-8">
+          <button
+            (click)="scrollTo('services')"
+            class="px-8 py-3 rounded-2xl text-sm font-bold text-white shadow-lg"
+            style="background:linear-gradient(135deg,#8b5cf6,#ec4899);">
+            ابدأ الآن 🚀
+          </button>
+
+          <button
+            (click)="scrollTo('about')"
+            class="px-8 py-3 rounded-2xl text-sm font-bold border border-violet-500 text-violet-600 bg-white hover:bg-violet-50 transition">
+            اعرف المزيد
+          </button>
+        </div>
+
+        <div class="flex gap-8 text-sm text-slate-600">
+          <div>
+            <div class="text-3xl font-extrabold text-violet-600">10K+</div>
+            <div>متعلم نشط</div>
+          </div>
+          <div>
+            <div class="text-3xl font-extrabold text-pink-500">500+</div>
+            <div>درس تفاعلي</div>
+          </div>
+          <div>
+            <div class="text-3xl font-extrabold text-violet-600">98%</div>
+            <div>نسبة رضا</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="float-animation">
+        <div
+          class="rounded-[2.5rem] p-10 shadow-2xl"
+          style="background:linear-gradient(135deg,#8b5cf6,#ec4899);">
+          <svg width="100%" height="320" viewBox="0 0 400 400" fill="none">
+            <circle cx="200" cy="150" r="60" fill="white" opacity="0.9" />
+            <path d="M200 210 L200 320" stroke="white" stroke-width="12" stroke-linecap="round" opacity="0.9" />
+            <path d="M200 240 L150 200" stroke="white" stroke-width="12" stroke-linecap="round" opacity="0.9" />
+            <path d="M200 240 L250 200" stroke="white" stroke-width="12" stroke-linecap="round" opacity="0.9" />
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="fade-in-up py-16 px-6 bg-white">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-3">من نحن</h2>
+      <div class="w-24 h-1 rounded-full mx-auto mb-6"
+           style="background:linear-gradient(90deg,#8b5cf6,#ec4899);"></div>
+      <p class="text-lg text-slate-700 leading-relaxed">
+        منصة دليل هي منصة تعليمية رائدة متخصصة في تعليم لغة الإشارة للأطفال والكبار.
+        نؤمن بأن التواصل حق للجميع، ونسعى لبناء جسور التواصل بين جميع أفراد المجتمع
+        من خلال محتوى تعليمي عالي الجودة ومعتمد.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="fade-in-up py-16 px-6 bg-slate-50">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-3">خدماتنا</h2>
+        <div class="w-24 h-1 rounded-full mx-auto mb-4"
+             style="background:linear-gradient(90deg,#8b5cf6,#ec4899);"></div>
+        <p class="text-slate-600 max-w-xl mx-auto">
+          نقدم مجموعة متنوعة من الخدمات المصممة لتلبية احتياجاتك التعليمية.
+        </p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div *ngFor="let s of services" class="service-card bg-white rounded-2xl p-6 shadow-lg border border-transparent">
+          <div
+            class="w-20 h-20 mb-4 rounded-2xl flex items-center justify-center text-4xl text-white"
+            style="background:linear-gradient(135deg,#8b5cf6,#ec4899);">
+            {{ s.icon }}
+          </div>
+          <h3 class="text-xl font-bold mb-2">{{ s.title }}</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            {{ s.description }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section id="newsletter" class="fade-in-up py-16 px-6 bg-white">
+    <div
+      class="max-w-3xl mx-auto rounded-3xl text-center text-white p-10 shadow-2xl relative overflow-hidden"
+      style="background:linear-gradient(135deg,#8b5cf6,#ec4899);">
+      <div class="relative z-10">
+        <div class="text-4xl mb-3">📧</div>
+        <h2 class="text-3xl font-extrabold mb-3">اشترك في نشرتنا البريدية</h2>
+        <p class="mb-6 text-base md:text-lg opacity-90">
+          احصل على آخر الأخبار والتحديثات والعروض الخاصة مباشرة في بريدك الإلكتروني.
+        </p>
+
+        <form
+          class="flex flex-wrap gap-3 justify-center"
+          (submit)="onNewsletterSubmit(newsEmail.value); $event.preventDefault()">
+          <input
+            #newsEmail
+            type="email"
+            required
+            class="input-field min-w-[220px] flex-1 px-4 py-3 rounded-2xl border-2 border-white/70 bg-white/20 backdrop-blur text-sm md:text-base outline-none"
+            placeholder="أدخل بريدك الإلكتروني" />
+          <button
+            type="submit"
+            class="px-6 py-3 rounded-2xl bg-white text-violet-600 font-bold text-sm md:text-base shadow-lg">
+            اشترك الآن 🎉
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="fade-in-up py-16 px-6 bg-slate-50">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-3">تواصل معنا</h2>
+      <div class="w-24 h-1 rounded-full mx-auto mb-4"
+           style="background:linear-gradient(90deg,#8b5cf6,#ec4899);"></div>
+      <p class="text-slate-600 mb-8">
+        يمكنك التواصل معنا عبر البريد الإلكتروني أو وسائل التواصل الاجتماعي.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-white py-8 px-6 text-center">
+    <p class="text-sm opacity-80">
+      © 2024 منصة دليل. جميع الحقوق محفوظة
+    </p>
+  </footer>
+
+  <!-- Login Modal -->
+  <div *ngIf="showLoginModal" class="modal-overlay fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+    <div class="modal-content bg-white rounded-2xl p-8 w-full max-w-md shadow-2xl relative">
+
+      <button
+        class="absolute top-3 left-3 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600"
+        (click)="closeLoginModal()">
+        ×
+      </button>
+
+      <h2 class="text-2xl font-extrabold mb-2 text-center">تسجيل الدخول</h2>
+      <p class="text-sm text-slate-500 mb-6 text-center">مرحباً بعودتك إلى منصة دليل</p>
+
+      <form
+        (submit)="onLoginSubmit(loginEmail.value, loginPassword.value); $event.preventDefault()">
+
+        <label class="block text-sm font-semibold mb-1">البريد الإلكتروني</label>
+        <input
+          #loginEmail
+          type="email"
+          required
+          class="input-field w-full mb-4 px-4 py-3 rounded-xl border border-slate-200 text-sm outline-none" />
+
+        <label class="block text-sm font-semibold mb-1">كلمة المرور</label>
+        <input
+          #loginPassword
+          type="password"
+          required
+          class="input-field w-full mb-6 px-4 py-3 rounded-xl border border-slate-200 text-sm outline-none" />
+
+        <button
+          type="submit"
+          class="w-full px-4 py-3 rounded-xl text-sm font-bold text-white shadow-md"
+          style="background:linear-gradient(135deg,#8b5cf6,#ec4899);">
+          دخول 🚀
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Notification -->
+  <div *ngIf="notification"
+       class="fixed top-6 right-6 z-50 text-white px-4 py-3 rounded-xl shadow-2xl text-sm font-semibold"
+       [ngStyle]="{
+         'background':
+           notification.type === 'success' ? '#16a34a' :
+           notification.type === 'error' ? '#dc2626' : '#3b82f6'
+       }">
+  {{ notification.message }}
+  </div>
+</main>

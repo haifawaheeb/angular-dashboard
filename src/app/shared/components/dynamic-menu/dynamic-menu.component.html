@@ -1,0 +1,42 @@
+<div class="menu-bar">
+  <ng-container *ngFor="let menu of menuList">
+    <div
+      class="menu-item"
+      [ngStyle]="{
+        'background-color': menu.backColor,
+        'border-radius': menu.BorderRadius,
+        'font-size': menu.fontSize,
+        'color': menu.fontColor
+      }"
+    >
+      <button class="menu-btn">
+        <mat-icon>{{ menu.icon }}</mat-icon> {{ menu.name }}
+      </button>
+
+      <div class="dropdown" *ngIf="menu.children">
+        <ng-container *ngTemplateOutlet="renderChildren; context: { $implicit: menu.children }"></ng-container>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #renderChildren let-children>
+    <ul class="menu-list">
+      <li *ngFor="let child of children">
+        <div
+          class="child-item"
+          [ngStyle]="{
+            'background-color': child.backColor,
+            'border-radius': child.BorderRadius,
+            'font-size': child.fontSize,
+            'color': child.fontColor
+          }"
+        >
+          <mat-icon *ngIf="child.icon">{{ child.icon }}</mat-icon> {{ child.name }}
+          <div class="submenu" *ngIf="child.ChildrenMenu">
+            <ng-container *ngTemplateOutlet="renderChildren; context: { $implicit: child.ChildrenMenu }"></ng-container>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </ng-template>
+</div>

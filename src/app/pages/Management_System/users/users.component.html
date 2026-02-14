@@ -1,0 +1,146 @@
+<div class="page-container">
+
+  <div class="top-bar">
+    <button class="btn-new" (click)="openDialog()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+        <line x1="12" y1="18" x2="12" y2="12"></line>
+        <line x1="9" y1="15" x2="15" y2="15"></line>
+      </svg>
+      <span>جديد</span>
+    </button>
+
+    <div class="action-icons">
+      <button class="icon-btn" type="submit">استيراد من اكسل </button>
+      <button class="icon-btn">22</button>
+      <button class="icon-btn">33</button>
+      <button class="icon-btn">33</button>
+      <button class="icon-btn">44</button>
+    </div>
+  </div>
+
+
+<div class="filter-bar">
+  <input
+    type="text"
+    [(ngModel)]="search"
+    placeholder="بحث ..."
+    class="form-control"
+  >
+
+  <button type="button" (click)="applyFilter()" class="btn-search">
+    بحث
+  </button>
+</div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>الاسم الانجليزية </th>
+          <th>الاسم بالعربية </th>
+          <th>الإيميل</th>
+          <th>الهاتف</th>
+          <th>الحالة</th>
+          <th>تاريخ الإنشاء</th>
+          <th>تاريخ التعديل </th>
+          <th>الصلاحية </th>
+          <th>تعديل</th>
+          <th>حذف</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (u of filteredUsers; track u.id) {
+        <tr>
+          <td>{{ u.id }}</td>
+          <td>{{ u.full_name_en }}</td>
+          <td>{{ u.full_name_ar}}</td>
+          <td>{{ u.email }}</td>
+          <td>{{ u.phone }}</td>
+          <td>{{ u.is_active ? "نشط" : "غير نشط" }}</td>
+          <td>{{ u.created_at | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ u.update_data | date: 'yyyy-MM-dd' }}</td>
+         <td>{{ formatRoles(u.roles) }}</td>
+
+
+
+
+          <td>
+            <button class="icon-btn-table edit" (click)="editUser(u)">✎</button>
+          </td>
+
+          <td>
+            <button class="icon-btn-table delete" (click)="deleteUser(u.id)">🗑</button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+@if (isDialogOpen) {
+<div class="dialog-overlay" (click)="closeDialog()">
+  <div class="dialog-box" (click)="$event.stopPropagation()">
+
+    <div class="dialog-header">
+      <button class="close-btn" (click)="closeDialog()">✖</button>
+      <h3>{{ dialogTitle }}</h3>
+    </div>
+
+    <!-- هنا الفورم الصحيح -->
+    <form [formGroup]="form" class="dialog-body" (ngSubmit)="saveUser()">
+
+      <div class="form-grid">
+
+        <div class="form-col">
+          <label>الاسم العربي</label>
+          <input formControlName="full_name_ar">
+
+          <label>الاسم الإنجليزية</label>
+          <input formControlName="full_name_en">
+
+          <label>الإيميل</label>
+          <input type="email" formControlName="email">
+
+          <label>الهاتف</label>
+          <input formControlName="phone">
+        </div>
+
+        <div class="form-col">
+          <label>الرقم الوطني</label>
+          <input formControlName="national_id">
+
+          <label>الحالة</label>
+          <select formControlName="is_active">
+            <option [value]="true">نشط</option>
+            <option [value]="false">غير نشط</option>
+          </select>
+
+          <label>الدور</label>
+          @for (role of rolesList; track role.key) {
+            <label>
+              <input type="checkbox"
+                     [checked]="selectedRoles.includes(role.key)"
+                     (change)="toggleRole(role.key, $event)" />
+              {{ role.label }}
+            </label>
+          }
+        </div>
+
+      </div>
+
+      <div class="footer-buttons">
+        <button type="submit" class="btn-save">💾 حفظ</button>
+        <button type="button" class="btn-exit" (click)="closeDialog()">❌ خروج</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+}

@@ -1,0 +1,53 @@
+{
+
+   "login": "login",
+  "username": "username ",
+  "password": "password",
+  "School_Administration": "School Administration",
+  "SYSTEM_SETTINGS": "System Settings",
+  "REPORTS_TRACKING": "Reports & Tracking",
+  "ADMIN": "Administration",
+
+  "USERS_PERMISSIONS": "Users & Permissions",
+  "MESSAGES_ALERTS_SETTINGS": "Alerts & Notifications Settings",
+  "TOOLS_BACKUP": "Backup & Restore",
+
+  "RECORDS_PROCEDURES": "Records & Procedures",
+  "ASSESSMENT_POINTS_GRADES": "Assessment Points & Grades",
+
+  "ACADEMIC_STAGES": "Academic Stages",
+  "USERS": "Users",
+
+  "STUDENT": "Students",
+  "LESSONS": "Lessons",
+  "COURSES": "Courses",
+  "CLASS_ROOM": "Classrooms",
+
+  "DASHBORD": "Dashboard",
+  "ADMIN_DASHBORD": "Admin Dashboard",
+  "ADMIN_ROLE": "Admin Roles",
+
+  "PROFILES": "Profiles",
+  "PYMENTS": "Payments",
+  "VIDEOS": "Videos",
+  "HEADER": "Header",
+  "TOP_MENU": "Top Menu",
+  "GARADES": "Grades",
+  "RECORDS": "Records",
+  "SETTINGS": "Settings",
+  "BACKUP": "Backup",
+  "CLASSROOMS": "Class Sections",
+  "SUBJECTS": "Subjects",
+  "SignMedia": "Sign Media",
+  "timetable_slots": "Timetable Slots",
+  "attendance_records": "Attendance Records",
+
+  "settings": "Settings",
+  "Label": "Label",
+  "showcolumn": "Visible Columns",
+  "hiddencolumn": "Hidden Columns",
+  "save": "Save",
+  "def": "Default",
+  "Exit": "Exit",
+  "sign_in": "Sign In"
+}

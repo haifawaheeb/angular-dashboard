@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>{{ config.dialogTitle }}</h2>
+
+<form [formGroup]="config.form" mat-dialog-content>
+
+  <div *ngFor="let field of config.formConfig">
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>{{ field.label }}</mat-label>
+
+      <input *ngIf="field.type === 'text'" matInput [formControlName]="field.key">
+      <input *ngIf="field.type === 'number'" matInput type="number" [formControlName]="field.key">
+
+      <mat-select *ngIf="field.type === 'select'" [formControlName]="field.key">
+        <mat-option *ngFor="let opt of field.options" [value]="opt.key">
+          {{ opt.label }}
+        </mat-option>
+      </mat-select>
+
+    </mat-form-field>
+
+  </div>
+
+</form>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="dialogRef.close()">إلغاء</button>
+  <button mat-raised-button color="primary" (click)="save()">حفظ</button>
+</mat-dialog-actions>

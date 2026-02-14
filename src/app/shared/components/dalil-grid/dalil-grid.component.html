@@ -1,0 +1,70 @@
+<div class="dalil-grid-wrapper">
+  <!-- العنوان والأكشنات -->
+  <div class="dalil-grid-header">
+    <h4 *ngIf="title">{{ title }}</h4>
+    <span class="spacer"></span>
+    <!-- أزرار أكشن اختيارية (طباعة / إكسل) لاحقاً -->
+  </div>
+
+  <!-- الجدول -->
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource" class="dalil-table">
+
+      <!-- عمود الترقيم -->
+      <ng-container matColumnDef="__index">
+        <th mat-header-cell *matHeaderCellDef>#</th>
+        <td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}</td>
+      </ng-container>
+
+      <!-- الأعمدة الديناميكية -->
+      <ng-container *ngFor="let col of columns" [matColumnDef]="col.field">
+        <th mat-header-cell *matHeaderCellDef [style.width.px]="col.width || 150">
+          {{ col.title | translate }}
+        </th>
+        <td mat-cell *matCellDef="let row" [style.width.px]="col.width || 150">
+          <ng-container [ngSwitch]="col.type">
+            <span *ngSwitchCase="'number'">{{ row[col.field] }}</span>
+            <span *ngSwitchCase="'date'">{{ row[col.field] | date: 'yyyy-MM-dd' }}</span>
+            <span *ngSwitchCase="'boolean'">
+              <mat-checkbox [disabled]="true" [checked]="row[col.field]"></mat-checkbox>
+            </span>
+            <span *ngSwitchCase="'translate'">{{ row[col.field] | translate }}</span>
+            <span *ngSwitchDefault>{{ row[col.field] }}</span>
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <!-- Header & Row defs -->
+      <tr mat-header-row *matHeaderRowDef="['__index', ...displayedColumnFields]"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['__index', ...displayedColumnFields]"></tr>
+
+      <!-- لا توجد بيانات -->
+      <tr class="no-data-row" *ngIf="dataSource.data.length === 0">
+        <td [attr.colspan]="displayedColumnFields.length + 1">
+          {{ 'NOTFINDRECORD' | translate }}
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- فوتر التجميع -->
+  <div class="dalil-grid-footer" *ngIf="columns.some(c => c.sum)">
+    <div class="sum-label">{{ 'OF_D_TOTVAL' | translate }}</div>
+    <div class="sum-values">
+      <span *ngFor="let col of columns" class="sum-cell">
+        <ng-container *ngIf="col.sum">
+          {{ getSum(col) }}
+        </ng-container>
+      </span>
+    </div>
+  </div>
+
+  <!-- Paginator -->
+  <mat-paginator
+    [length]="pageEvent.length"
+    [pageIndex]="pageEvent.pageIndex"
+    [pageSize]="pageEvent.pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+</div>

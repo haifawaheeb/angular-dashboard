@@ -1,0 +1,58 @@
+<div class="dialog-overlay">
+  <div class="dialog-box">
+
+    <div class="dialog-header">
+      <h3>{{ title }}</h3>
+      <button class="close-btn" (click)="cancel()">✖</button>
+    </div>
+
+    <form [formGroup]="form" class="dialog-body">
+
+      <div class="form-grid">
+
+        <ng-container *ngFor="let field of fields">
+
+          <label>{{ field.label }}</label>
+
+          <!-- نص -->
+          <input *ngIf="field.type === 'string'"
+                 formControlName="{{field.name}}" />
+
+          <!-- رقم -->
+          <input *ngIf="field.type === 'number'"
+                 type="number"
+                 formControlName="{{field.name}}" />
+
+          <!-- إيميل -->
+          <input *ngIf="field.type === 'email'"
+                 type="email"
+                 formControlName="{{field.name}}" />
+
+          <!-- Boolean -->
+          <div *ngIf="field.type === 'boolean'" class="checkbox-row">
+            <input type="checkbox" formControlName="{{field.name}}" />
+            <span>{{ field.label }}</span>
+          </div>
+
+          <!-- Select -->
+          <select *ngIf="field.type === 'select'"
+                  formControlName="{{field.name}}">
+            <option *ngFor="let opt of field.options"
+                    [value]="opt.value">
+              {{ opt.label }}
+            </option>
+          </select>
+
+        </ng-container>
+
+      </div>
+
+      <div class="footer-buttons">
+        <button type="button" class="btn-save" (click)="submit()">💾 حفظ</button>
+        <button type="button" class="btn-exit" (click)="cancel()">❌ خروج</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
